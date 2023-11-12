@@ -7,6 +7,11 @@ body {
   background: radial-gradient(circle, #3f769e, #1d3f58) !important;
 }
 
+p {
+  padding: 0;
+  margin: 0;
+}
+
 header {
   position: absolute;
   z-index: 99;
@@ -84,13 +89,15 @@ header {
 .card-img-top {
   position: relative;
   width: auto;
+  aspect-ratio: 53/40;
   border-radius: 0;
-  margin: 2.5rem;
+  margin: 3.5rem 3.5rem 4.5rem 3.5rem;
   border-bottom: 8px solid #78a9cc !important;
   border-left: 8px solid #2d5c7d !important;
   border-right: 8px solid #538bb4 !important;
   border-top: 8px solid #1c4561 !important;
-  background-color: rgb(204, 230, 193);
+  background-color: rgb(238, 226, 193);
+  box-shadow: inset 1px 2px 6 16px rgba(57, 45, 7, 0.95);
 }
 
 .card-img-top img {
@@ -111,14 +118,17 @@ header {
 
 .question-display {
   position: relative;
-  margin: 0 1.5rem;
+  margin: 0 2.5rem;
   padding: 0.5rem;
   border-bottom: 8px solid #78a9cc !important;
   border-left: 8px solid #2d5c7d !important;
   border-right: 8px solid #538bb4 !important;
   border-top: 8px solid #1c4561 !important;
-  background-color: rgb(204, 230, 193);
+  background-color: rgb(238, 226, 193);
+
   z-index: 4;
+  box-shadow: inset 1px 2px 16px rgba(57, 45, 7, 0.35);
+  text-shadow: 1px 2px 12px rgba(57, 44, 7, 0.35);
 }
 
 .question-display::before {
@@ -139,23 +149,21 @@ header {
 
 .card-text {
   font-family: 'EarlyGameBoy', sans-serif;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
 }
 .card-title {
   font-family: 'EarlyGameBoy', sans-serif;
   font-size: 1.025rem;
   font-weight: 900;
-  text-wrap: balance;
 }
 
 .answer {
-  border-top: 2px solid #b3beca !important;
-  border-left: 2px solid #9ea8b3 !important;
-  border-right: 2px solid #798592 !important;
-  border-bottom: 2px solid #63707d !important;
-  font-family: 'EarlyGameBoy', sans-serif;
   color: #122a41;
-  margin-bottom: 0.25rem;
+  text-shadow: 1px 2px 12px rgba(57, 44, 7, 0.35);
+  margin: 0;
+  border: none;
+  background-color: transparent;
+  z-index: -1;
 }
 
 .card-body.answer-body {
@@ -163,9 +171,117 @@ header {
 }
 
 .answer-container {
-  margin: 1.5rem;
+  position: relative;
+  z-index: 4;
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
+  /* margin: 2.5rem; */
+  width: 72%;
   font-size: 0.8rem;
+  font-family: 'EarlyGameBoy', sans-serif;
+  background-color: rgb(238, 226, 193);
+  border-bottom: 8px solid #78a9cc !important;
+  border-left: 8px solid #2d5c7d !important;
+  border-right: 8px solid #538bb4 !important;
+  border-top: 8px solid #1c4561 !important;
+  box-shadow: inset 1px 2px 16px rgba(57, 42, 7, 0.35);
+}
+
+.answer-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  background-image: url(img/grain.jpeg);
+  background-size: contain;
+  mix-blend-mode: multiply;
+  filter: opacity(0.35) brightness(0.2);
+
+  z-index: 0; /* Hinter das Hauptelement schieben */
+}
+
+.answer-panel {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  margin: 2.5rem;
+}
+
+.locking-container {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 2rem;
+  width: calc(100% - 72%);
+}
+
+.lock-switch-panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 0.5rem 0;
+  height: 100%;
+}
+
+.lock-switch {
+  height: 1.125rem;
+  width: 1.125rem;
+  border: #122a41 1px solid;
+}
+
+.indicator-panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0.5rem 0.5rem;
+  height: calc(100%);
+}
+
+.lock-light {
+  position: relative;
+  height: 1.125rem;
+  width: 1.125rem;
+  border-radius: 50%;
+  border: 2px solid #383735;
+  box-shadow: inset 1px 2px 0 0 rgba(0, 0, 0, 0.7);
+}
+
+.lock-light::before {
+  content: '';
+  display: block;
+  height: 100%;
+  width: 100%;
+
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, #61605d 0%, #43423f 100%);
+  box-shadow: inset 0 0 0 rgba(255, 255, 255, 0.2),
+    inset -0.5 1px 0 0 rgba(0, 0, 0, 0.6);
+}
+
+.lock-light::after {
+  position: absolute;
+  content: '';
+  display: block;
+  border-radius: 100%;
+  height: 1.35rem;
+  width: 1.35rem;
+  right: -4.15px;
+  top: -4.15px;
+  background: radial-gradient(ellipse at center, #e5b76e 0%, #d9a130 100%);
+
+  opacity: 0.7;
+  filter: blur(4px);
+}
+
+.wrong {
+  background: radial-gradient(ellipse at center, #e5726e 0%, #d93830 100%);
+}
+
+.correct {
+  background: radial-gradient(ellipse at center, #50c650 0%, #27a51e 100%);
 }
