@@ -26,9 +26,9 @@
   <!--  -->
 
   <body>
-    <header>
+    <!-- <header>
       <div class="title-bar"></div>
-    </header>
+    </header> -->
 
     <div class="quizcard-container">
       <div class="card quiz-card mt-4">
@@ -39,48 +39,81 @@
           <div class="sound-switch-container">
             <div class="switch-rail"></div>
             <div class="switch-handle-container">
-              <div class="switch-handle"><span>|||||</span></div>
+              <div
+                class="switch-handle sound-off off-position"
+                id="sound-switch"
+                onclick="toggleSoundSwitch()">
+                <span>|||||</span>
+              </div>
+            </div>
+            <div class="switch-label">
+              <svg width="16" height="16" viewBox="0 0 24 24">
+                <path
+                  fill="#586874"
+                  d="M13 2h-2v2H9v2H7v2H3v8h4v2h2v2h2v2h2V2zM9 18v-2H7v-2H5v-4h2V8h2V6h2v12H9zm10-6.777h-2v-2h-2v2h2v2h-2v2h2v-2h2v2h2v-2h-2v-2zm0 0h2v-2h-2v2z" />
+              </svg>
+              <svg width="16" height="16" viewBox="0 0 24 24">
+                <path
+                  fill="#586874"
+                  d="M11 2h2v20h-2v-2H9v-2h2V6H9V4h2V2zM7 8V6h2v2H7zm0 8H3V8h4v2H5v4h2v2zm0 0v2h2v-2H7zm10-6h-2v4h2v-4zm2-2h2v8h-2V8zm0 8v2h-4v-2h4zm0-10v2h-4V6h4z" />
+              </svg>
             </div>
           </div>
           <div class="onoff-switch-container">
             <div class="switch-rail"></div>
             <div class="switch-handle-container">
-              <div class="switch-handle"><span>|||||</span></div>
+              <div
+                class="switch-handle power-off off-position"
+                id="power-switch"
+                onclick="togglePowerSwitch()">
+                <span>|||||</span>
+              </div>
+            </div>
+            <div class="switch-label">
+              <svg width="16" height="16" viewBox="0 0 24 24">
+                <path
+                  fill="#586874"
+                  d="M5 3h14v2H5V3zm0 16H3V5h2v14zm14 0v2H5v-2h14zm0 0h2V5h-2v14zM10 8H8v2h2V8zm4 0h2v2h-2V8zm-5 8v-2h6v2h2v-2h-2v-2H9v2H7v2h2z" />
+              </svg>
+              <svg width="16" height="16" viewBox="0 0 24 24">
+                <path
+                  fill="#586874"
+                  d="M5 3h14v2H5V3zm0 16H3V5h2v14zm14 0v2H5v-2h14zm0 0h2V5h-2v14zM10 8H8v2h2V8zm4 0h2v2h-2V8zm-5 6v-2H7v2h2zm6 0v2H9v-2h6zm0 0h2v-2h-2v2z" />
+              </svg>
             </div>
           </div>
         </div>
+
         <div class="card-img-top">
           <div class="overlay">
-            <img src="img/grain.jpeg" alt="" />
+            <img src="img/grain.jpeg" class="start-flicker" />
           </div>
 
           <img src="img/strawberry.gif" />
         </div>
         <div class="card-body quiz-card-body">
           <div class="question-display">
-            <h5 class="card-title">Question #1</h5>
+            <h5 class="card-title">Hello there!</h5>
             <div class="card-text">
-              <p>
-                The Beatles on a usual tuesday. Which song do we 'see' here?
-              </p>
+              <p>press **next** to start quizzing. good luck, pal!</p>
             </div>
           </div>
           <div class="answer-panel">
             <div class="answer-container">
               <div class="card answer">
-                <div class="card-body answer-body">Now and Then</div>
+                <div class="card-body answer-body">. . . . . . . . . . . .</div>
               </div>
 
               <div class="card answer">
-                <div class="card-body answer-body">Northern Wood</div>
+                <div class="card-body answer-body">. . . . . . . . . . . .</div>
               </div>
 
               <div class="card answer">
-                <div class="card-body answer-body">Strawberry Fields</div>
+                <div class="card-body answer-body">. . . . . . . . . . . .</div>
               </div>
 
               <div class="card answer">
-                <div class="card-body answer-body">Lovely Rita</div>
+                <div class="card-body answer-body">. . . . . . . . . . . .</div>
               </div>
             </div>
 
