@@ -1,4 +1,9 @@
-// typewriter-effect
+welcomeScreen = [
+  {
+    greetingTxt: 'hello there!',
+    ctaTxt: 'press **next** to start quizzing. good luck, pal!',
+  },
+];
 
 quizData = [
   {
@@ -13,7 +18,7 @@ quizData = [
   },
 ];
 
-const cardText = quizData[0].question;
+// const cardText = quizData[0].question;
 
 function togglePowerSwitch() {
   const powerSwitch = document.getElementById('power-switch');

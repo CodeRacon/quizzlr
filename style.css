@@ -1,5 +1,24 @@
 :root {
-  --bgc-q01: #3f769e !important;
+  --off-led-background: radial-gradient(
+    ellipse at center,
+    #706f6b 0%,
+    #52504d 100%
+  );
+  --idle-background: radial-gradient(
+    ellipse at center,
+    #e5b76e 0%,
+    #d9a130 100%
+  );
+  --wrong-background: radial-gradient(
+    ellipse at center,
+    #e5726e 0%,
+    #d93830 100%
+  );
+  --correct-background: radial-gradient(
+    ellipse at center,
+    #50c650 0%,
+    #27a51e 100%
+  );
 }
 
 body {
@@ -229,7 +248,7 @@ header {
 .card-img-top {
   position: relative;
   width: auto;
-  aspect-ratio: 53/40;
+  object-fit: cover;
   border-radius: 0;
   margin: 5.5rem 3.5rem 1.5rem 3.5rem;
   border-radius: 0.5rem;
@@ -238,19 +257,24 @@ header {
   border-left: 8px solid #2d5c7d !important;
   border-right: 8px solid #538bb4 !important;
   border-top: 8px solid #1c4561 !important;
-  background-color: rgb(238, 226, 193);
-  box-shadow: inset 1px 2px 16px rgba(57, 45, 7, 0.95);
+  background-color: rgb(67, 67, 67);
+  box-shadow: inset 1px 2px 16px rgba(57, 45, 7, 0.75);
 }
 
 .card-img-top img {
   width: 100%;
-  filter: saturate(1.125);
+  filter: saturate(1.125) brightness(1.25) contrast(0.85);
+}
+
+.welcome-screen-filter {
+  filter: saturate(1.125) opacity(0.05) invert();
 }
 
 .overlay {
   position: absolute;
   z-index: 10;
   height: 100%;
+  width: 100%;
 }
 
 .overlay img {
@@ -404,12 +428,12 @@ header {
   width: 100%;
 
   border-radius: 50%;
-  background: radial-gradient(ellipse at center, #61605d 0%, #43423f 100%);
+  background: var(--off-led-background);
   box-shadow: inset 0 0 0 rgba(255, 255, 255, 0.2),
     inset -0.5 1px 0 0 rgba(0, 0, 0, 0.6);
 }
 
-/* .lock-light::after {
+.lock-light::after {
   position: absolute;
   content: '';
   display: block;
@@ -418,17 +442,25 @@ header {
   width: 1.35rem;
   right: -4.15px;
   top: -4.15px;
-  background: radial-gradient(ellipse at center, #e5b76e 0%, #d9a130 100%);
+  background: var(--idle-background);
   opacity: 0.7;
   filter: blur(4px);
-} */
+}
 
 .wrong {
-  background: radial-gradient(ellipse at center, #e5726e 0%, #d93830 100%);
+  background: var(--wrong-background);
 }
 
 .correct {
-  background: radial-gradient(ellipse at center, #50c650 0%, #27a51e 100%);
+  background: var(--correct-background);
+}
+
+.idle {
+  background: var(--idle-background);
+}
+
+.off-led {
+  background: var(--off-led-background);
 }
 
 .confirm {
@@ -619,10 +651,29 @@ fieldset {
   width: 0.5rem;
   margin: 0 0.35rem;
   border-radius: 50%;
-  border: 1px solid #383735;
-  box-shadow: inset 0.5px 1px 0 0 rgba(0, 0, 0, 0.5);
+  border: 0.75px solid #383735;
+  box-shadow: inset 0 0 0 rgba(255, 255, 255, 0.2);
+}
 
-  background: radial-gradient(ellipse at center, #61605d 0%, #43423f 100%);
-  box-shadow: inset 0 0 0 rgba(255, 255, 255, 0.2),
-    inset -0.5 1px 0 0 rgba(0, 0, 0, 0.6);
+.process-light::before {
+  content: '';
+  display: block;
+  border-radius: 50%;
+  height: 100%;
+  width: 100%;
+  background: var(--off-led-background);
+  box-shadow: inset 0 0 0 rgba(255, 255, 255, 0.2);
+}
+
+.process-light::after {
+  position: absolute;
+  content: '';
+  display: block;
+  border-radius: 100%;
+  height: 0.5rem;
+  width: 0.5rem;
+  left: -0.95px;
+  top: -0.55px;
+  background: var(--idle-background);
+  filter: blur(1.125px);
 }

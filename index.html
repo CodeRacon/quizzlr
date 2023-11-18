@@ -20,15 +20,16 @@
 
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="fonts.css" />
-    <script src="script.js"></script>
+    <script defer src="startsequence.js"></script>
+    <script defer src="script.js"></script>
   </head>
 
   <!--  -->
 
   <body>
-    <!-- <header>
+    <header>
       <div class="title-bar"></div>
-    </header> -->
+    </header>
 
     <div class="quizcard-container">
       <div class="card quiz-card mt-4">
@@ -119,16 +120,16 @@
 
             <div class="locking-container">
               <div class="lock-switch-panel">
-                <div class="lock-switch"></div>
-                <div class="lock-switch"></div>
-                <div class="lock-switch"></div>
-                <div class="lock-switch"></div>
+                <div class="lock-switch" id="a1Switch"></div>
+                <div class="lock-switch" id="a2Switch"></div>
+                <div class="lock-switch" id="a3Switch"></div>
+                <div class="lock-switch" id="a4Switch"></div>
               </div>
               <div class="indicator-panel">
-                <div class="lock-light"></div>
-                <div class="lock-light"></div>
-                <div class="lock-light"></div>
-                <div class="lock-light"></div>
+                <div class="lock-light" id="a1LED"></div>
+                <div class="lock-light" id="a2LED"></div>
+                <div class="lock-light" id="a3LED"></div>
+                <div class="lock-light" id="a4LED"></div>
               </div>
             </div>
           </div>
@@ -149,51 +150,51 @@
 
                 <div class="light-rows">
                   <div class="row-1">
-                    <div class="process-light"></div>
+                    <div class="process-light" id="q1LED"></div>
                     <div class="spacer"></div>
-                    <div class="process-light"></div>
+                    <div class="process-light" id="q2LED"></div>
                     <div class="spacer"></div>
-                    <div class="process-light"></div>
+                    <div class="process-light" id="q3LED"></div>
                     <div class="spacer"></div>
-                    <div class="process-light"></div>
+                    <div class="process-light" id="q4LED"></div>
                     <div class="spacer"></div>
-                    <div class="process-light"></div>
+                    <div class="process-light" id="q5LED"></div>
                   </div>
 
                   <div class="row-2">
-                    <div class="process-light"></div>
+                    <div class="process-light" id="q6LED"></div>
                     <div class="spacer"></div>
-                    <div class="process-light"></div>
+                    <div class="process-light" id="q7LED"></div>
                     <div class="spacer"></div>
-                    <div class="process-light"></div>
+                    <div class="process-light" id="q8LED"></div>
                     <div class="spacer"></div>
-                    <div class="process-light"></div>
+                    <div class="process-light" id="q9LED"></div>
                     <div class="spacer"></div>
-                    <div class="process-light"></div>
+                    <div class="process-light" id="q10LED"></div>
                   </div>
 
                   <div class="row-3">
-                    <div class="process-light"></div>
+                    <div class="process-light" id="q11LED"></div>
                     <div class="spacer"></div>
-                    <div class="process-light"></div>
+                    <div class="process-light" id="q12LED"></div>
                     <div class="spacer"></div>
-                    <div class="process-light"></div>
+                    <div class="process-light" id="q13LED"></div>
                     <div class="spacer"></div>
-                    <div class="process-light"></div>
+                    <div class="process-light" id="q14LED"></div>
                     <div class="spacer"></div>
-                    <div class="process-light"></div>
+                    <div class="process-light" id="q15LED"></div>
                   </div>
 
                   <div class="row-4">
-                    <div class="process-light"></div>
+                    <div class="process-light" id="q16LED"></div>
                     <div class="spacer"></div>
-                    <div class="process-light"></div>
+                    <div class="process-light" id="q17LED"></div>
                     <div class="spacer"></div>
-                    <div class="process-light"></div>
+                    <div class="process-light" id="q18LED"></div>
                     <div class="spacer"></div>
-                    <div class="process-light"></div>
+                    <div class="process-light" id="q19LED"></div>
                     <div class="spacer"></div>
-                    <div class="process-light"></div>
+                    <div class="process-light" id="q20LED"></div>
                   </div>
                 </div>
                 <div class="right-bracket-container">
