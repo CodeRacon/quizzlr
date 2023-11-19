@@ -1,5 +1,5 @@
 // // LEDs
-const allProgressLEDs = document.querySelectorAll('.process-light');
+const allProgressLEDs = document.querySelectorAll('.progress-light');
 const allLockLEDs = [
   document.getElementById('a1LED'),
   document.getElementById('a2LED'),
@@ -13,7 +13,7 @@ const blinkCycles = 3;
 const blinkDelay = 0;
 
 function initializeLEDs() {
-  const allProgressLEDs = document.querySelectorAll('.process-light');
+  const allProgressLEDs = document.querySelectorAll('.progress-light');
   const allLockLEDs = [
     document.getElementById('a1LED'),
     document.getElementById('a2LED'),

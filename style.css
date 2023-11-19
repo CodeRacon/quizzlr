@@ -21,6 +21,10 @@
   );
 }
 
+.d-none {
+  display: none;
+}
+
 body {
   min-height: 100vh;
   background: radial-gradient(circle, #3f769e, #1d3f58) !important;
@@ -127,6 +131,7 @@ header {
     0.75px 1px 2px rgba(10, 23, 50, 0.25);
   padding: 0.2rem 0 2rem;
   vertical-align: middle;
+  cursor: default;
 }
 
 .top-switches {
@@ -382,8 +387,8 @@ header {
 .locking-container {
   display: flex;
   justify-content: space-between;
-  padding-left: 2rem;
-  width: calc(100% - 72%);
+  padding-left: 2.25rem;
+  width: calc(100% - 70%);
 }
 
 .lock-switch-panel {
@@ -397,10 +402,41 @@ header {
 }
 
 .lock-switch {
+  position: relative;
   height: 1.125rem;
-  width: 1.125rem;
-  border: #122a41 1px solid;
+  width: 2.5rem;
   border-radius: 0.25rem;
+  background-color: rgb(170, 170, 170);
+  border-style: solid;
+  border-color: #c4c4c4;
+  border-bottom: transparent;
+  border-width: 1px 1px 0 1px;
+  box-shadow: 1.5px 1.5px 0 rgba(255, 255, 255, 0.2) inset,
+    0.5px 0.5px 4px rgba(10, 23, 50, 0.25);
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.lock-switch::before {
+  position: absolute;
+  display: none;
+  content: '';
+  height: 1.125rem;
+  width: 2.5rem;
+  left: -1px;
+  background: radial-gradient(circle, #e5a227 0%, #c4c4c4 100%);
+  border-radius: 100%;
+  filter: opacity(0.65) blur(6px);
+}
+
+.lock-switch:active {
+  box-shadow: 0.5px 0.5px 0 rgba(255, 255, 255, 0.2) inset,
+    0.5px 0.5px 4px rgba(10, 23, 50, 0.25);
+  border-color: transparent;
+}
+
+.lock-switch:active::before {
+  display: block;
 }
 
 .indicator-panel {
@@ -417,7 +453,7 @@ header {
   height: 1.125rem;
   width: 1.125rem;
   border-radius: 50%;
-  border: 2px solid #383735;
+  border: 2px solid #474543;
   box-shadow: inset 1px 2px 0 0 rgba(0, 0, 0, 0.7);
 }
 
@@ -508,7 +544,7 @@ header {
   padding-bottom: 0.35rem;
 }
 
-.process-panel {
+.progress-panel {
   position: relative;
   display: flex;
   justify-content: center;
@@ -552,7 +588,7 @@ fieldset {
   margin-left: 0.5rem;
 }
 
-.process-light-panel {
+.progress-light-panel {
   display: flex;
   justify-content: space-between;
   padding: 0 1rem;
@@ -644,7 +680,7 @@ fieldset {
   border-color: #2d5c7d;
 }
 
-.process-light {
+.progress-light {
   position: relative;
   height: 0.5rem;
   width: 0.5rem;
@@ -654,7 +690,7 @@ fieldset {
   box-shadow: inset 0 0 0 rgba(255, 255, 255, 0.2);
 }
 
-.process-light::before {
+.progress-light::before {
   content: '';
   display: block;
   border-radius: 50%;
@@ -664,38 +700,38 @@ fieldset {
   box-shadow: inset 0 0 0 rgba(255, 255, 255, 0.2);
 }
 
-.process-light::after {
+.progress-light::after {
   position: absolute;
   content: '';
   display: block;
   border-radius: 100%;
-  height: 0.5rem;
-  width: 0.5rem;
-  left: -0.95px;
-  top: -0.55px;
-  filter: blur(1.125px);
+  height: 0.65rem;
+  width: 0.65rem;
+  left: -2px;
+  top: -2.5px;
+  filter: blur(2px);
 }
 
-/* #q4LED.process-light::after {
+/* #q4LED.progress-light::after {
   background: var(--idle-background);
 } */
 
 .lock-light.is-off::after,
-.process-light.is-off::after {
+.progress-light.is-off::after {
   background: none;
 }
 
 .lock-light.is-idle::after,
-.process-light.is-idle::after {
+.progress-light.is-idle::after {
   background: var(--idle-background) !important;
 }
 
 .lock-light.is-wrong::after,
-.process-light.is-wrong::after {
+.progress-light.is-wrong::after {
   background: var(--wrong-background) !important;
 }
 
 .lock-light.is-correct::after,
-.process-light.is-correct::after {
+.progress-light.is-correct::after {
   background: var(--correct-background) !important;
 }
