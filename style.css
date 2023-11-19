@@ -442,7 +442,6 @@ header {
   width: 1.35rem;
   right: -4.15px;
   top: -4.15px;
-  background: var(--idle-background);
   opacity: 0.7;
   filter: blur(4px);
 }
@@ -674,6 +673,29 @@ fieldset {
   width: 0.5rem;
   left: -0.95px;
   top: -0.55px;
-  background: var(--idle-background);
   filter: blur(1.125px);
+}
+
+/* #q4LED.process-light::after {
+  background: var(--idle-background);
+} */
+
+.lock-light.is-off::after,
+.process-light.is-off::after {
+  background: none;
+}
+
+.lock-light.is-idle::after,
+.process-light.is-idle::after {
+  background: var(--idle-background) !important;
+}
+
+.lock-light.is-wrong::after,
+.process-light.is-wrong::after {
+  background: var(--wrong-background) !important;
+}
+
+.lock-light.is-correct::after,
+.process-light.is-correct::after {
+  background: var(--correct-background) !important;
 }

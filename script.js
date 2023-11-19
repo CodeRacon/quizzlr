@@ -7,6 +7,7 @@ welcomeScreen = [
 
 quizData = [
   {
+    questionLedID: 'q1LED',
     question: 'The Beatles on a usual tuesday. Which song do we "see" here?',
     answers: [
       'Now and Then',
@@ -31,7 +32,9 @@ function togglePowerSwitch() {
     setTimeout(() => {
       powerSwitch.classList.remove('off-position');
       powerSwitch.classList.add('on-position');
+      lightUpLEDs();
     }, 335);
+    initializeLEDs();
   } else {
     powerSwitch.classList.remove('power-on');
     powerSwitch.classList.add('power-off');
