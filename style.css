@@ -28,6 +28,7 @@
 body {
   min-height: 100vh;
   background: radial-gradient(circle, #3f769e, #1d3f58) !important;
+  font-size: 16px;
 }
 
 p {
@@ -292,6 +293,7 @@ header {
   margin: 0 2.5rem;
   padding: 0.5rem;
   border-radius: 0.5rem;
+  color: #292d26;
 
   border-bottom: 8px solid #78a9cc !important;
   border-left: 8px solid #2d5c7d !important;
@@ -321,12 +323,12 @@ header {
 }
 
 .card-text {
-  font-family: 'EarlyGameBoy', sans-serif;
-  font-size: 0.75rem;
+  font-family: 'PixelIntv', sans-serif;
+  font-size: 1rem;
 }
 .card-title {
-  font-family: 'EarlyGameBoy', sans-serif;
-  font-size: 1.025rem;
+  font-family: 'PixelIntv', sans-serif;
+  font-size: 1.25rem;
   font-weight: 900;
 }
 
@@ -350,8 +352,11 @@ header {
   flex-direction: column;
   /* margin: 2.5rem; */
   width: 72%;
-  font-size: 0.8rem;
-  font-family: 'EarlyGameBoy', sans-serif;
+  height: 8rem;
+  color: #292d26;
+
+  font-size: 1rem;
+  font-family: 'PixelIntv', sans-serif;
   background-color: rgb(238, 226, 193);
   border-radius: 0.5rem;
   border-bottom: 8px solid #78a9cc !important;
@@ -405,6 +410,12 @@ header {
   position: relative;
   height: 1.125rem;
   width: 2.5rem;
+  color: transparent;
+  font-size: 0.65rem;
+  font-family: 'EarlyGameBoy', sans-serif;
+  text-align: center;
+  line-height: 1.125rem;
+  padding: 0 auto;
   border-radius: 0.25rem;
   background-color: rgb(170, 170, 170);
   border-style: solid;
@@ -415,6 +426,7 @@ header {
     0.5px 0.5px 4px rgba(10, 23, 50, 0.25);
   cursor: pointer;
   overflow: hidden;
+  z-index: 99;
 }
 
 .lock-switch::before {
@@ -424,9 +436,23 @@ header {
   height: 1.125rem;
   width: 2.5rem;
   left: -1px;
-  background: radial-gradient(circle, #e5a227 0%, #c4c4c4 100%);
+  background: radial-gradient(circle, #e58c27 0%, #c4c4c4 100%);
   border-radius: 100%;
   filter: opacity(0.65) blur(6px);
+  z-index: 1;
+}
+
+.lock-switch::after {
+  position: absolute;
+  content: attr(data-label);
+  height: 1.125rem;
+  width: 2.5rem;
+  left: -1px;
+  color: #0a1b4b;
+  font-family: 'EarlyGameBoy', sans-serif;
+  text-shadow: 1px 0.25px rgba(255, 255, 255, 0.3);
+
+  z-index: 10;
 }
 
 .lock-switch:active {

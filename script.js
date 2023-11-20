@@ -1,7 +1,9 @@
-welcomeScreen = [
+startScreen = [
   {
     greetingTxt: 'hello there!',
     ctaTxt: 'press **next** to start quizzing. good luck, pal!',
+    answers:
+      'choose your suggestion of the correct answer by pressing the button right next to it!',
   },
 ];
 

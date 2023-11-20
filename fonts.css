@@ -4,3 +4,24 @@
   font-family: 'EarlyGameBoy';
   src: url(fonts/EarlyGameBoy.ttf);
 }
+
+/* Public Pixel Font */
+
+@font-face {
+  font-family: 'PublicPixel';
+  src: url(fonts/PublicPixel.ttf);
+}
+
+/* OldSchoolAdventures Font */
+
+@font-face {
+  font-family: 'OldSchoolAdventures';
+  src: url(fonts/OldSchoolAdventures.ttf);
+}
+
+/* PixelIntv Font */
+
+@font-face {
+  font-family: 'PixelIntv';
+  src: url(fonts/PixelIntv.ttf);
+}

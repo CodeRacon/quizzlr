@@ -96,38 +96,39 @@
           <div class="question-display">
             <h5 class="card-title">Hello there!</h5>
             <div class="card-text">
-              <p>press **next** to start quizzing. good luck, pal!</p>
+              <p>Press >>NEXT<< to start quizzing. Good luck, pal!</p>
             </div>
           </div>
           <div class="answer-panel">
             <div class="answer-container">
               <div class="card answer">
-                <div class="card-body answer-body">
-                  choose your suggestion of the correct answer by pressing the
-                  button right next to it
+                <div class="card-body answer-body" id="answer-txt-1">
+                  Submit your answer by choosing it with the corresponding
+                  button and hit >>CONFIRM<< !
                 </div>
               </div>
 
               <div class="card answer d-none">
-                <div class="card-body answer-body"></div>
+                <div class="card-body answer-body" id="answer-txt-2"></div>
               </div>
 
               <div class="card answer d-none">
-                <div class="card-body answer-body"></div>
+                <div class="card-body answer-body" id="answer-txt-3"></div>
               </div>
 
               <div class="card answer d-none">
-                <div class="card-body answer-body"></div>
+                <div class="card-body answer-body" id="answer-txt-4"></div>
               </div>
             </div>
 
             <div class="locking-container">
               <div class="lock-switch-panel">
-                <div class="lock-switch" id="a1Switch"></div>
-                <div class="lock-switch" id="a2Switch"></div>
-                <div class="lock-switch" id="a3Switch"></div>
-                <div class="lock-switch" id="a4Switch"></div>
+                <div class="lock-switch" id="a1Switch" data-label="1">1</div>
+                <div class="lock-switch" id="a2Switch" data-label="2">2</div>
+                <div class="lock-switch" id="a3Switch" data-label="3">3</div>
+                <div class="lock-switch" id="a4Switch" data-label="4">4</div>
               </div>
+
               <div class="indicator-panel">
                 <div class="lock-light" id="a1LED"></div>
                 <div class="lock-light" id="a2LED"></div>
