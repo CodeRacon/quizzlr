@@ -20,13 +20,15 @@
 
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="fonts.css" />
+    <script defer src="quiz-display.js"></script>
     <script defer src="startsequence.js"></script>
     <script defer src="script.js"></script>
+    <script defer src="json.js"></script>
   </head>
 
   <!--  -->
 
-  <body>
+  <body onload="init()">
     <header>
       <div class="title-bar"></div>
     </header>
@@ -90,33 +92,30 @@
             <img src="img/grain.jpeg" class="start-flicker" />
           </div>
 
-          <img src="img/start.gif" />
+          <img src="" id="img-display" />
         </div>
         <div class="card-body quiz-card-body">
           <div class="question-display">
-            <h5 class="card-title">Hello there!</h5>
-            <div class="card-text">
-              <p>Press >>NEXT<< to start quizzing. Good luck, pal!</p>
+            <h5 class="card-title" id="quiz-card-title"></h5>
+            <div class="card-text" id="quiz-card-text">
+              <p></p>
             </div>
           </div>
           <div class="answer-panel">
             <div class="answer-container">
               <div class="card answer">
-                <div class="card-body answer-body" id="answer-txt-1">
-                  Submit your answer by choosing it with the corresponding
-                  button and hit >>CONFIRM<< !
-                </div>
+                <div class="card-body answer-body" id="answer-txt-1"></div>
               </div>
 
-              <div class="card answer d-none">
+              <div class="card answer">
                 <div class="card-body answer-body" id="answer-txt-2"></div>
               </div>
 
-              <div class="card answer d-none">
+              <div class="card answer">
                 <div class="card-body answer-body" id="answer-txt-3"></div>
               </div>
 
-              <div class="card answer d-none">
+              <div class="card answer">
                 <div class="card-body answer-body" id="answer-txt-4"></div>
               </div>
             </div>

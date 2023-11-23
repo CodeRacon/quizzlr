@@ -269,6 +269,7 @@ header {
 
 .card-img-top img {
   width: 100%;
+  aspect-ratio: 4/3;
   filter: saturate(1.125) brightness(1.25) contrast(0.85);
 }
 
@@ -294,6 +295,7 @@ header {
   padding: 0.5rem;
   border-radius: 0.5rem;
   color: #292d26;
+  height: 7rem;
 
   border-bottom: 8px solid #78a9cc !important;
   border-left: 8px solid #2d5c7d !important;
@@ -313,6 +315,7 @@ header {
   right: 0;
   bottom: 0;
   left: 0;
+  height: 100%;
 
   background-image: url(img/grain.jpeg);
   background-size: contain;

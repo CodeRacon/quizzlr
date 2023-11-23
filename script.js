@@ -1,4 +1,3 @@
-// const cardText = quizData[0].question;
 let audio; // Außerhalb der Funktion, um global darauf zugreifen zu können
 let isSoundOn = false;
 let isPowerOn = false;
@@ -82,6 +81,7 @@ function togglePowerSwitch() {
       soundSwitch.classList.add('off-position');
       stopBgSound();
       isPowerOn = false;
+      init();
     }, 335);
   }
 }

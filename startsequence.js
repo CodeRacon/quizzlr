@@ -55,6 +55,10 @@ function lightUpLEDs() {
 
     delay += singleLEDOnDuration;
   });
+
+  setTimeout(() => {
+    renderStartScreen();
+  }, 4500);
 }
 
 function blinkLEDs() {

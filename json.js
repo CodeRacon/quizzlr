@@ -1,10 +1,13 @@
-startScreen = [
+startData = [
   {
     imgOnScreen: 'img/start.gif',
-    greetingTxt: 'hello there!',
-    ctaTxt: 'press **next** to start quizzing. good luck, pal!',
+    quizCardTitle: 'Hello there!',
+    quizCardTxt: 'Press >>NEXT<< to start quizzing. Good luck, pal!',
     answer_1:
-      'choose your suggestion of the correct answer by pressing the button right next to it!',
+      'Submit your answer by choosing it with the corresponding button and hit >>CONFIRM<< !',
+    answer_2: '',
+    answer_3: '',
+    answer_4: '',
   },
 ];
 
