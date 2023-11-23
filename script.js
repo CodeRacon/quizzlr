@@ -1,26 +1,3 @@
-startScreen = [
-  {
-    greetingTxt: 'hello there!',
-    ctaTxt: 'press **next** to start quizzing. good luck, pal!',
-    answers:
-      'choose your suggestion of the correct answer by pressing the button right next to it!',
-  },
-];
-
-quizData = [
-  {
-    questionLedID: 'q1LED',
-    question: 'The Beatles on a usual tuesday. Which song do we "see" here?',
-    answers: [
-      'Now and Then',
-      'Norwegian Wood',
-      'Strawberry Fields',
-      'Lovely Rita',
-    ],
-    rightOne: '2',
-  },
-];
-
 // const cardText = quizData[0].question;
 let audio; // Außerhalb der Funktion, um global darauf zugreifen zu können
 let isSoundOn = false;

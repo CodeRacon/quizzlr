@@ -253,7 +253,7 @@ header {
 
 .card-img-top {
   position: relative;
-  width: auto;
+  width: 24.5rem;
   object-fit: cover;
   border-radius: 0;
   margin: 5.5rem 3.5rem 1.5rem 3.5rem;
