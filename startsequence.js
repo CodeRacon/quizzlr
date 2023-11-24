@@ -91,3 +91,35 @@ function blinkLEDs() {
     }
   }
 }
+
+// function activateCurrentLED(index) {
+//   const currentQuestion = quizData[index];
+//   const questionLED = currentQuestion.questionLED;
+
+//   // Deaktiviere alle LEDs zuerst
+//   const allLEDs = document.querySelectorAll('.progress-light');
+//   allLEDs.forEach((led) => {
+//     led.classList.remove('pulsating'); // Hier die Klasse für das Pulsieren entfernen
+//   });
+
+//   // Aktiviere die LED für die aktuelle Frage
+//   const currentLED = document.getElementById(questionLED);
+//   if (currentLED) {
+//     currentLED.classList.add('pulsating'); // Hier die Klasse für das Pulsieren hinzufügen
+//   }
+// }
+
+function activateCurrentLED(index) {
+  const allLEDs = document.querySelectorAll('.progress-light');
+
+  allLEDs.forEach((led) => {
+    led.classList.remove('is-off');
+    led.classList.remove('is-on');
+    led.classList.remove('is-idle');
+    led.classList.remove('pulsating');
+  });
+
+  const currentLED = document.getElementById(`q${index + 1}LED`);
+  currentLED.classList.add('is-idle');
+  currentLED.classList.add('pulsating');
+}

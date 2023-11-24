@@ -254,7 +254,7 @@ header {
 .card-img-top {
   position: relative;
   width: 24.5rem;
-  object-fit: cover;
+  object-fit: fill;
   border-radius: 0;
   margin: 5.5rem 3.5rem 1.5rem 3.5rem;
   border-radius: 0.5rem;
@@ -269,7 +269,8 @@ header {
 
 .card-img-top img {
   width: 100%;
-  aspect-ratio: 4/3;
+  aspect-ratio: 3/2;
+  object-fit: cover;
   filter: saturate(1.125) brightness(1.25) contrast(0.85);
 }
 
@@ -295,7 +296,7 @@ header {
   padding: 0.5rem;
   border-radius: 0.5rem;
   color: #292d26;
-  height: 7rem;
+  height: 9rem;
 
   border-bottom: 8px solid #78a9cc !important;
   border-left: 8px solid #2d5c7d !important;
@@ -356,10 +357,7 @@ header {
   /* margin: 2.5rem; */
   width: 72%;
   height: 8rem;
-  color: #292d26;
 
-  font-size: 1rem;
-  font-family: 'PixelIntv', sans-serif;
   background-color: rgb(238, 226, 193);
   border-radius: 0.5rem;
   border-bottom: 8px solid #78a9cc !important;
@@ -383,6 +381,14 @@ header {
   filter: opacity(0.35) brightness(0.2);
 
   z-index: 0; /* Hinter das Hauptelement schieben */
+}
+
+.card-body.answer-body {
+  margin: 0;
+  padding: 0.125rem 0.5rem;
+  color: #292d26;
+  font-size: 1rem;
+  font-family: 'PixelIntv', sans-serif;
 }
 
 .answer-panel {
@@ -763,4 +769,25 @@ fieldset {
 .lock-light.is-correct::after,
 .progress-light.is-correct::after {
   background: var(--correct-background) !important;
+}
+
+.progress-light.is-idle.pulsating::after {
+  content: ''; /* Das ::after Pseudo-Element benötigt den Content-Attribut */
+  position: absolute; /* Positioniere das Pseudo-Element */
+  left: -2px;
+  top: -2.5px;
+  right: 0;
+  bottom: 0;
+  background: var(--idle-background); /* Setze die Hintergrundfarbe */
+  opacity: 0; /* Starte die Animation mit niedriger Opazität */
+  animation: pulseAnimation 0.75s ease-in-out infinite alternate; /* Füge die Pulsationsanimation hinzu */
+}
+
+@keyframes pulseAnimation {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
