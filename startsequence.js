@@ -195,3 +195,5 @@ function turnLEDGreen() {
   correctLED.classList.remove('is-wrong');
   correctLED.classList.add('is-correct');
 }
+
+// function to show the stored isCorrect - value within the progress-panel
