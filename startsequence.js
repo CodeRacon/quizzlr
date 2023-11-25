@@ -163,18 +163,16 @@ function confirmAnswer(selectedAnswer) {
   // Überprüfe, ob die ausgewählte Antwort mit der richtigen Antwort übereinstimmt
   if (selectedAnswer === correctAnswer) {
     isCorrect = true; // Wenn richtig, setze den Wert auf true
-    turnLEDGreen();
-    turnLEDRed();
   } else {
-    turnLEDGreen();
-    turnLEDRed();
+    isCorrect = false;
   }
-
+  turnLEDOn();
   // Speichere die Information, ob die Frage richtig oder falsch beantwortet wurde
   quizData[currentIndex - 1].isCorrect = isCorrect;
+  quizData[currentIndex - 1].isDone = true; // Markiere die Frage als beantwortet
 }
 
-function turnLEDRed() {
+function turnLEDOn() {
   allLockLEDs.forEach((led, index) => {
     const currentQuestion = quizData[currentIndex - 1];
     const correctAnswer = currentQuestion.right_answer;
@@ -183,16 +181,18 @@ function turnLEDRed() {
       led.classList.remove('is-idle');
       led.classList.remove('is-off');
       led.classList.add('is-wrong');
+    } else {
+      led.classList.add('is-correct');
     }
   });
 }
 
-function turnLEDGreen() {
-  const currentQuestion = quizData[currentIndex - 1];
-  const correctAnswer = currentQuestion.right_answer;
+// function turnLEDGreen() {
+//   const currentQuestion = quizData[currentIndex - 1];
+//   const correctAnswer = currentQuestion.right_answer;
 
-  const correctLED = document.getElementById(`a${correctAnswer + 1}LED`);
-  correctLED.classList.remove('is-wrong');
-  correctLED.classList.add('is-correct');
-}
+//   const correctLED = document.getElementById(`a${correctAnswer + 1}LED`);
+//   correctLED.classList.remove('is-wrong');
+//   correctLED.classList.add('is-correct');
+// }
 // function to show the stored isCorrect - value within the progress-panel and leave it in this color
