@@ -117,16 +117,13 @@ function renderStartScreen() {
 
 function renderNextCard() {
   if (currentIndex < quizData.length) {
-    if (currentIndex === 0) {
-      renderQuizData(currentIndex);
-    } else {
-      currentIndex--;
-      renderQuizData(currentIndex);
-      currentIndex++;
-    }
+    renderQuizData(currentIndex);
+    currentIndex++;
   } else {
     console.log('Quiz finished!');
   }
+
+  deactivateAnswerLED();
 }
 
 function typeWriter(text, elementId, speed) {
