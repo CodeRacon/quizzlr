@@ -148,13 +148,13 @@ function activateAnswerLED(answer) {
 function deactivateAnswerLED() {
   allLockLEDs.forEach((led) => {
     led.classList.remove('is-idle');
+    led.classList.remove('is-wrong');
+    led.classList.remove('is-correct');
     led.classList.add('is-off');
   });
 }
 
 function confirmAnswer(selectedAnswer) {
-  console.log('confirmAnswer parameter:', selectedAnswer);
-  console.log('current Index:', currentIndex);
   const currentQuestion = quizData[currentIndex - 1]; // Aktuelle Frage aus quizData
   const correctAnswer = currentQuestion.right_answer; // Richtige Antwort-Index
 
@@ -163,13 +163,35 @@ function confirmAnswer(selectedAnswer) {
   // Überprüfe, ob die ausgewählte Antwort mit der richtigen Antwort übereinstimmt
   if (selectedAnswer === correctAnswer) {
     isCorrect = true; // Wenn richtig, setze den Wert auf true
-    console.log('Richtige Antwort!');
-    // Code, um die grüne LED im Indicator-Panel zu aktivieren
+    turnLEDGreen();
+    turnLEDRed();
   } else {
-    console.log('Falsche Antwort!');
-    // Code, um die rote LED im Indicator-Panel zu aktivieren
+    turnLEDGreen();
+    turnLEDRed();
   }
 
   // Speichere die Information, ob die Frage richtig oder falsch beantwortet wurde
   quizData[currentIndex - 1].isCorrect = isCorrect;
+}
+
+function turnLEDRed() {
+  allLockLEDs.forEach((led, index) => {
+    const currentQuestion = quizData[currentIndex - 1];
+    const correctAnswer = currentQuestion.right_answer;
+
+    if (index !== correctAnswer) {
+      led.classList.remove('is-idle');
+      led.classList.remove('is-off');
+      led.classList.add('is-wrong');
+    }
+  });
+}
+
+function turnLEDGreen() {
+  const currentQuestion = quizData[currentIndex - 1];
+  const correctAnswer = currentQuestion.right_answer;
+
+  const correctLED = document.getElementById(`a${correctAnswer + 1}LED`);
+  correctLED.classList.remove('is-wrong');
+  correctLED.classList.add('is-correct');
 }
