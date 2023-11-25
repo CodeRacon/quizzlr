@@ -159,7 +159,7 @@ quizData = [
   {
     imgOnScreen: 'img/q15.gif',
     questionLED: 'q15LED',
-    question: 'Wat ist the final spoken word in The Last Of Us?',
+    question: 'What ist the final spoken word in The Last Of Us?',
     answer_1: 'okay',
     answer_2: 'promise',
     answer_3: 'truth',
@@ -190,11 +190,11 @@ quizData = [
   {
     imgOnScreen: 'img/q18.gif',
     questionLED: 'q18LED',
-    question: 'How many Fabergé Eggs do exist?',
-    answer_1: '48',
-    answer_2: '53',
-    answer_3: '69',
-    answer_4: '50',
+    question: 'What kind of furniture is just like an array in JavaScript?',
+    answer_1: 'a bed',
+    answer_2: 'a drawer',
+    answer_3: 'a shelf',
+    answer_4: 'a rocking chair',
     right_answer: 1,
   },
   {

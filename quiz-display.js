@@ -1,6 +1,7 @@
 //
 //
 //
+let currentIndex = 0;
 
 function init() {
   const displayedIMG = document.getElementById('img-display');
@@ -114,12 +115,15 @@ function renderStartScreen() {
   });
 }
 
-let currentIndex = 0;
-
 function renderNextCard() {
   if (currentIndex < quizData.length) {
-    renderQuizData(currentIndex);
-    currentIndex++;
+    if (currentIndex === 0) {
+      renderQuizData(currentIndex);
+    } else {
+      currentIndex--;
+      renderQuizData(currentIndex);
+      currentIndex++;
+    }
   } else {
     console.log('Quiz finished!');
   }

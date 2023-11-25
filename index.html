@@ -122,10 +122,34 @@
 
             <div class="locking-container">
               <div class="lock-switch-panel">
-                <div class="lock-switch" id="a1Switch" data-label="1">1</div>
-                <div class="lock-switch" id="a2Switch" data-label="2">2</div>
-                <div class="lock-switch" id="a3Switch" data-label="3">3</div>
-                <div class="lock-switch" id="a4Switch" data-label="4">4</div>
+                <div
+                  class="lock-switch"
+                  id="a1Switch"
+                  data-label="1"
+                  onclick="selectAnswer(0)">
+                  1
+                </div>
+                <div
+                  class="lock-switch"
+                  id="a2Switch"
+                  data-label="2"
+                  onclick="selectAnswer(1)">
+                  2
+                </div>
+                <div
+                  class="lock-switch"
+                  id="a3Switch"
+                  data-label="3"
+                  onclick="selectAnswer(2)">
+                  3
+                </div>
+                <div
+                  class="lock-switch"
+                  id="a4Switch"
+                  data-label="4"
+                  onclick="selectAnswer(3)">
+                  4
+                </div>
               </div>
 
               <div class="indicator-panel">
@@ -137,7 +161,9 @@
             </div>
           </div>
           <div class="confirm">
-            <button>confirm</button>
+            <button type="button" onclick="confirmAnswer(selectedAnswer)">
+              confirm
+            </button>
             <div class="spacer rotated-90"></div>
             <button type="button" onclick="renderNextCard()">next</button>
           </div>

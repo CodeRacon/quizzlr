@@ -123,3 +123,49 @@ function activateCurrentLED(index) {
   currentLED.classList.add('is-idle');
   currentLED.classList.add('pulsating');
 }
+
+//
+let selectedAnswer;
+//
+function selectAnswer(answer) {
+  console.log('selectedAnswer:', answer);
+  selectedAnswer = answer;
+
+  activateAnswerLED(answer);
+}
+
+function activateAnswerLED(answer) {
+  const currentAnswerLED = document.getElementById(`a${answer + 1}LED`);
+
+  allLockLEDs.forEach((led) => {
+    led.classList.remove('is-off');
+    led.classList.remove('is-idle');
+  });
+
+  currentAnswerLED.classList.add('is-idle');
+}
+
+function confirmAnswer(selectedAnswer) {
+  console.log('confirmAnswer parameter:', selectedAnswer);
+  console.log('current Index:', currentIndex);
+  const currentQuestion = quizData[currentIndex]; // Aktuelle Frage aus quizData
+  const correctAnswer = currentQuestion.right_answer; // Richtige Antwort-Index
+
+  let correctAnswered = false; // Variable, um zu speichern, ob die Frage richtig beantwortet wurde
+
+  // Überprüfe, ob die ausgewählte Antwort mit der richtigen Antwort übereinstimmt
+  if (selectedAnswer === correctAnswer) {
+    correctAnswered = true; // Wenn richtig, setze den Wert auf true
+    console.log('Richtige Antwort!');
+    // Code, um die grüne LED im Indicator-Panel zu aktivieren
+  } else {
+    console.log('Falsche Antwort!');
+    // Code, um die rote LED im Indicator-Panel zu aktivieren
+  }
+
+  // Speichere die Information, ob die Frage richtig oder falsch beantwortet wurde
+  quizData[currentIndex].correctAnswered = correctAnswered;
+
+  // Fortsetzung zum nächsten Schritt oder zum Anzeigen der Ergebnisse
+  // ...
+}
