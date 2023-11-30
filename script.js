@@ -55,7 +55,7 @@ function toggleSoundSwitch() {
 function togglePowerSwitch() {
   const powerSwitch = document.getElementById('power-switch');
   const soundSwitch = document.getElementById('sound-switch');
-
+  controllIndex = 0;
   if (powerSwitch.classList.contains('power-off')) {
     powerSwitch.classList.remove('power-off');
     powerSwitch.classList.add('power-on');

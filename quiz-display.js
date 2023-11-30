@@ -8,6 +8,7 @@ let isStartRendered = false;
 function init() {
   isStartRendered = false;
   isPowerOn = false;
+  controllIndex = 0;
 
   const displayedIMG = document.getElementById('img-display');
   const quizCardTitle = document.getElementById('quiz-card-title');
@@ -105,7 +106,6 @@ function renderNextCard() {
       console.log('Quiz beendet!');
     }
   } else {
-    console.log('Bitte schalte die Power ein!');
   }
 }
 

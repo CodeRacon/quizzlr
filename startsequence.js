@@ -20,16 +20,22 @@ function initializeLEDs() {
     document.getElementById('a3LED'),
     document.getElementById('a4LED'),
   ];
+  if (controllIndex === 0) {
+    allProgressLEDs.forEach((led) => {
+      led.classList.toggle('is-off', true);
+      led.classList.remove('is-idle', 'is-wrong', 'is-correct');
+    });
 
-  allProgressLEDs.forEach((led) => {
-    led.classList.toggle('is-off', true);
-    led.classList.remove('is-idle', 'is-wrong', 'is-correct');
-  });
-
-  allLockLEDs.forEach((lockLED) => {
-    lockLED.classList.toggle('is-off', true);
-    lockLED.classList.remove('is-idle', 'is-wrong', 'is-correct');
-  });
+    allLockLEDs.forEach((lockLED) => {
+      lockLED.classList.toggle('is-off', true);
+      lockLED.classList.remove('is-idle', 'is-wrong', 'is-correct');
+    });
+  } else {
+    allLockLEDs.forEach((lockLED) => {
+      lockLED.classList.toggle('is-off', true);
+      lockLED.classList.remove('is-idle', 'is-wrong', 'is-correct');
+    });
+  }
 }
 
 function lightUpLEDs() {
@@ -144,6 +150,13 @@ function turnLEDOn() {
     } else {
       led.classList.add('is-correct');
     }
+  });
+}
+
+function turnLockLEDsOff() {
+  allLockLEDs.forEach((lockLED) => {
+    lockLED.classList.toggle('is-off', true);
+    lockLED.classList.remove('is-idle', 'is-wrong', 'is-correct');
   });
 }
 

@@ -66,17 +66,17 @@ quizData = [
 
   {
     imgOnScreen: 'img/q06.gif',
-    questionLED: 'q06LED',
+    questionLED: 'q6LED',
     question: 'What is the name of this well suited problem-solver?',
     answer_1: 'Mr. Brown',
     answer_2: 'Mr. Black',
     answer_3: 'Mr. Wolf',
     answer_4: 'Mr. Fox',
-    right_answer: 3,
+    right_answer: 2,
   },
   {
     imgOnScreen: 'img/q07.gif',
-    questionLED: 'q07LED',
+    questionLED: 'q7LED',
     question: 'John Wick is known by a sinister nickname. What is it?',
     answer_1: 'Baba Yaga',
     answer_2: 'Ghost',
@@ -165,7 +165,7 @@ quizData = [
     answer_2: 'promise',
     answer_3: 'truth',
     answer_4: 'swear',
-    right_answer: 3,
+    right_answer: 0,
   },
   {
     imgOnScreen: 'img/q16.gif',
@@ -216,6 +216,6 @@ quizData = [
     answer_2: 'sine-wave',
     answer_3: 'square-wave',
     answer_4: 'pulse-wave',
-    right_answer: 1,
+    right_answer: 0,
   },
 ];
