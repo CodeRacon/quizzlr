@@ -212,10 +212,10 @@ quizData = [
     imgOnScreen: 'img/q20.gif',
     questionLED: 'q20LED',
     question: 'Which wave-form is commonly used to get a fat bass sound?',
-    answer_1: 'sawtooth-wave',
+    answer_1: 'square-wave',
     answer_2: 'sine-wave',
-    answer_3: 'square-wave',
+    answer_3: 'sawtooth-wave',
     answer_4: 'pulse-wave',
-    right_answer: 0,
+    right_answer: 2,
   },
 ];
