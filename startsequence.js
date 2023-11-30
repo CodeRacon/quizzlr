@@ -35,7 +35,7 @@ function initializeLEDs() {
 function lightUpLEDs() {
   let delay = 0;
   let completedRow = 0; // Variable zur Verfolgung der abgeschlossenen Reihen
-  const singleLEDOnDuration = 150;
+  const singleLEDOnDuration = 100;
 
   allProgressLEDs.forEach((LED, index) => {
     setTimeout(() => {
@@ -58,7 +58,7 @@ function lightUpLEDs() {
 
   setTimeout(() => {
     renderStartScreen();
-  }, 4500);
+  }, 3500);
 }
 
 function blinkLEDs() {
@@ -92,47 +92,59 @@ function blinkLEDs() {
   }
 }
 
-// function activateCurrentLED(index) {
-//   const currentQuestion = quizData[index];
-//   const questionLED = currentQuestion.questionLED;
-
-//   // Deaktiviere alle LEDs zuerst
-//   const allLEDs = document.querySelectorAll('.progress-light');
-//   allLEDs.forEach((led) => {
-//     led.classList.remove('pulsating'); // Hier die Klasse für das Pulsieren entfernen
-//   });
-
-//   // Aktiviere die LED für die aktuelle Frage
-//   const currentLED = document.getElementById(questionLED);
-//   if (currentLED) {
-//     currentLED.classList.add('pulsating'); // Hier die Klasse für das Pulsieren hinzufügen
-//   }
-// }
-
-function activateCurrentLED(index) {
-  const allLEDs = document.querySelectorAll('.progress-light');
-
-  allLEDs.forEach((led) => {
-    led.classList.remove('is-off');
-    led.classList.remove('is-on');
-    led.classList.remove('is-idle');
-    led.classList.remove('pulsating');
-  });
-
-  const currentLED = document.getElementById(`q${index + 1}LED`);
-  currentLED.classList.add('is-idle');
-  currentLED.classList.add('pulsating');
-}
-
 //
 let selectedAnswer;
 let isSelected = false;
 //
 function selectAnswer(answer) {
-  console.log('selectedAnswer:', answer);
-  selectedAnswer = answer;
-  isSelected = true;
-  activateAnswerLED(answer);
+  if (controllIndex >= 1) {
+    console.log('selectedAnswer:', answer);
+    selectedAnswer = answer;
+    isSelected = true;
+    activateAnswerLED(answer);
+  } else {
+  }
+}
+
+function confirmAnswer(selectedAnswer) {
+  if (controllIndex >= 1) {
+    if (isSelected) {
+      const currentQuestion = quizData[currentIndex]; // Aktuelle Frage aus quizData
+      const correctAnswer = currentQuestion.right_answer; // Richtige Antwort-Index
+
+      let isCorrect = false; // Variable, um zu speichern, ob die Frage richtig beantwortet wurde
+
+      // Überprüfe, ob die ausgewählte Antwort mit der richtigen Antwort übereinstimmt
+      if (selectedAnswer === correctAnswer) {
+        isCorrect = true; // Wenn richtig, setze den Wert auf true
+      } else {
+        isCorrect = false;
+      }
+      turnLEDOn();
+      // Speichere die Information, ob die Frage richtig oder falsch beantwortet wurde
+      quizData[currentIndex].isCorrect = isCorrect;
+      quizData[currentIndex].isDone = true; // Markiere die Frage als beantwortet
+      colourCurrentLED();
+    } else {
+      blinkLEDs(); // Funktion, um die LEDs blinken zu lassen, wenn keine Antwort ausgewählt wurde
+    }
+  } else {
+  }
+}
+
+function turnLEDOn() {
+  allLockLEDs.forEach((led, index) => {
+    const currentQuestion = quizData[currentIndex];
+    const correctAnswer = currentQuestion.right_answer;
+
+    if (index !== correctAnswer) {
+      led.classList.remove('is-idle');
+      led.classList.remove('is-off');
+      led.classList.add('is-wrong');
+    } else {
+      led.classList.add('is-correct');
+    }
+  });
 }
 
 function activateAnswerLED(answer) {
@@ -156,52 +168,47 @@ function deactivateAnswerLED() {
   isSelected = false;
 }
 
-function confirmAnswer(selectedAnswer) {
-  if (controllIndex >= 1) {
-    if (isSelected) {
-      const currentQuestion = quizData[currentIndex]; // Aktuelle Frage aus quizData
-      const correctAnswer = currentQuestion.right_answer; // Richtige Antwort-Index
+function activateCurrentLED(currentIndex) {
+  const allLEDs = document.querySelectorAll('.progress-light');
 
-      let isCorrect = false; // Variable, um zu speichern, ob die Frage richtig beantwortet wurde
+  allLEDs.forEach((led) => {
+    led.classList.remove('is-off');
+    led.classList.remove('is-idle');
+    led.classList.remove('pulsating');
+  });
 
-      // Überprüfe, ob die ausgewählte Antwort mit der richtigen Antwort übereinstimmt
-      if (selectedAnswer === correctAnswer) {
-        isCorrect = true; // Wenn richtig, setze den Wert auf true
-      } else {
-        isCorrect = false;
-      }
-      turnLEDOn();
-      // Speichere die Information, ob die Frage richtig oder falsch beantwortet wurde
-      quizData[currentIndex].isCorrect = isCorrect;
-      quizData[currentIndex].isDone = true; // Markiere die Frage als beantwortet
-    } else {
-      blinkLEDs(); // Funktion, um die LEDs blinken zu lassen, wenn keine Antwort ausgewählt wurde
-    }
+  const currentQuestion = quizData[currentIndex];
+  const currentLED = document.getElementById(currentQuestion.questionLED);
+
+  currentLED.classList.add('is-idle');
+  currentLED.classList.add('pulsating');
+}
+
+function colourCurrentLED() {
+  const currentQuestion = quizData[currentIndex];
+  const isCorrect = currentQuestion.isCorrect;
+  const currentLED = document.getElementById(currentQuestion.questionLED);
+
+  if (isCorrect === true) {
+    currentLED.classList.remove('is-idle', 'pulsating');
+    currentLED.classList.add('is-correct', 'pulsating');
   } else {
+    currentLED.classList.remove('is-idle', 'pulsating');
+    currentLED.classList.add('is-wrong', 'pulsating');
   }
 }
 
-function turnLEDOn() {
-  allLockLEDs.forEach((led, index) => {
-    const currentQuestion = quizData[currentIndex];
-    const correctAnswer = currentQuestion.right_answer;
+// function colourCurrentLED() {
+//   const currentQuestion = quizData[currentIndex];
+//   const isCorrect = currentQuestion.isCorrect;
 
-    if (index !== correctAnswer) {
-      led.classList.remove('is-idle');
-      led.classList.remove('is-off');
-      led.classList.add('is-wrong');
-    } else {
-      led.classList.add('is-correct');
-    }
-  });
-}
+//   const currentLED = document.getElementById(currentQuestion.questionLED);
 
-// function turnLEDGreen() {
-//   const currentQuestion = quizData[currentIndex - 1];
-//   const correctAnswer = currentQuestion.right_answer;
+//   currentLED.classList.remove('is-idle', 'is-wrong', 'is-correct', 'pulsating');
 
-//   const correctLED = document.getElementById(`a${correctAnswer + 1}LED`);
-//   correctLED.classList.remove('is-wrong');
-//   correctLED.classList.add('is-correct');
+//   if (isCorrect) {
+//     currentLED.classList.add('is-correct', 'pulsating');
+//   } else {
+//     currentLED.classList.add('is-wrong', 'pulsating');
+//   }
 // }
-// function to show the stored isCorrect - value within the progress-panel and leave it in this color

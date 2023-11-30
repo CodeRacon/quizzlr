@@ -27,46 +27,6 @@ function init() {
   answerTxt4.innerHTML = '';
 }
 
-// function renderStartScreen() {
-//   const displayedIMG = document.getElementById('img-display');
-//   const quizCardTitle = document.getElementById('quiz-card-title');
-//   const quizCardTxt = document.getElementById('quiz-card-text');
-//   const answerTxt1 = document.getElementById('answer-txt-1');
-//   const answerTxt2 = document.getElementById('answer-txt-2');
-//   const answerTxt3 = document.getElementById('answer-txt-3');
-//   const answerTxt4 = document.getElementById('answer-txt-4');
-
-//   displayedIMG.src = startData[0].imgOnScreen;
-//   quizCardTitle.innerHTML = startData[0].quizCardTitle;
-//   quizCardTxt.innerHTML = startData[0].quizCardTxt;
-
-//   answerTxt1.innerHTML = startData[0].answer_1;
-//   answerTxt2.innerHTML = '';
-//   answerTxt3.innerHTML = '';
-//   answerTxt4.innerHTML = '';
-// }
-
-// function renderQuizData(i) {
-//   const quizJSON = quizData[i];
-
-//   const displayedIMG = document.getElementById('img-display');
-//   const quizCardTitle = document.getElementById('quiz-card-title');
-//   const quizCardTxt = document.getElementById('quiz-card-text');
-//   const answerTxt1 = document.getElementById('answer-txt-1');
-//   const answerTxt2 = document.getElementById('answer-txt-2');
-//   const answerTxt3 = document.getElementById('answer-txt-3');
-//   const answerTxt4 = document.getElementById('answer-txt-4');
-
-//   displayedIMG.src = quizJSON.imgOnScreen;
-//   quizCardTitle.innerHTML = `Question #${i + 1}`;
-//   quizCardTxt.innerHTML = quizJSON.question;
-
-//   answerTxt1.innerHTML = quizJSON.answer_1;
-//   answerTxt2.innerHTML = quizJSON.answer_2;
-//   answerTxt3.innerHTML = quizJSON.answer_3;
-//   answerTxt4.innerHTML = quizJSON.answer_4;
-// }
-
 function renderStartScreen() {
   isStartRendered = true;
 
@@ -149,39 +109,8 @@ function renderNextCard() {
   }
 }
 
-// if ((quizData[currentIndex].isFirstQuestion = true)) {
-//   if (currentIndex < quizData.length) {
-//     if (quizData[currentIndex].isDone) {
-//       renderQuizData(currentIndex);
-//       deactivateAnswerLED();
-//       currentIndex++;
-//     } else {
-//       blinkLEDs();
-//       console.log('Beantworte die Frage zuerst!');
-//     }
-//   } else {
-//     console.log('Quiz beendet!');
-//   }
-// }
-
-function typeWriter(text, elementId, speed) {
-  let i = 0;
-  const targetElement = document.getElementById(elementId);
-  if (!targetElement || !text) return;
-
-  function type() {
-    if (i < text.length) {
-      targetElement.innerHTML += text.charAt(i);
-      i++;
-      setTimeout(type, speed);
-    }
-  }
-
-  type();
-}
-
-function renderQuizData(index) {
-  const quizJSON = quizData[index];
+function renderQuizData(currentIndex) {
+  const quizJSON = quizData[currentIndex];
 
   const displayedIMG = document.getElementById('img-display');
   const quizCardTitle = document.getElementById('quiz-card-title');
@@ -192,7 +121,7 @@ function renderQuizData(index) {
   const answerTxt4 = document.getElementById('answer-txt-4');
 
   displayedIMG.src = quizJSON.imgOnScreen;
-  quizCardTitle.innerHTML = `Question #${index + 1}`;
+  quizCardTitle.innerHTML = `Question #${currentIndex + 1}`;
   // quizCardTxt.innerHTML = '';
 
   const texts = [
@@ -229,5 +158,21 @@ function renderQuizData(index) {
     }
   });
 
-  activateCurrentLED(index);
+  activateCurrentLED(currentIndex);
+}
+
+function typeWriter(text, elementId, speed) {
+  let i = 0;
+  const targetElement = document.getElementById(elementId);
+  if (!targetElement || !text) return;
+
+  function type() {
+    if (i < text.length) {
+      targetElement.innerHTML += text.charAt(i);
+      i++;
+      setTimeout(type, speed);
+    }
+  }
+
+  type();
 }

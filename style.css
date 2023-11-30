@@ -784,6 +784,28 @@ fieldset {
   opacity: 0; /* Starte die Animation mit niedriger Opazität */
   animation: pulseAnimation 0.75s ease-in-out infinite alternate; /* Füge die Pulsationsanimation hinzu */
 }
+.progress-light.is-correct.pulsating::after {
+  content: ''; /* Das ::after Pseudo-Element benötigt den Content-Attribut */
+  position: absolute; /* Positioniere das Pseudo-Element */
+  left: -2px;
+  top: -2.5px;
+  right: 0;
+  bottom: 0;
+  background: var(--correct-background); /* Setze die Hintergrundfarbe */
+  opacity: 0; /* Starte die Animation mit niedriger Opazität */
+  animation: pulseAnimation 0.75s ease-in-out infinite alternate; /* Füge die Pulsationsanimation hinzu */
+}
+.progress-light.is-wrong.pulsating::after {
+  content: ''; /* Das ::after Pseudo-Element benötigt den Content-Attribut */
+  position: absolute; /* Positioniere das Pseudo-Element */
+  left: -2px;
+  top: -2.5px;
+  right: 0;
+  bottom: 0;
+  background: var(--wrong-background); /* Setze die Hintergrundfarbe */
+  opacity: 0; /* Starte die Animation mit niedriger Opazität */
+  animation: pulseAnimation 0.75s ease-in-out infinite alternate; /* Füge die Pulsationsanimation hinzu */
+}
 
 @keyframes pulseAnimation {
   from {
