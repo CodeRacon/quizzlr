@@ -126,11 +126,12 @@ function activateCurrentLED(index) {
 
 //
 let selectedAnswer;
+let isSelected = false;
 //
 function selectAnswer(answer) {
   console.log('selectedAnswer:', answer);
   selectedAnswer = answer;
-
+  isSelected = true;
   activateAnswerLED(answer);
 }
 
@@ -152,29 +153,37 @@ function deactivateAnswerLED() {
     led.classList.remove('is-correct');
     led.classList.add('is-off');
   });
+  isSelected = false;
 }
 
 function confirmAnswer(selectedAnswer) {
-  const currentQuestion = quizData[currentIndex - 1]; // Aktuelle Frage aus quizData
-  const correctAnswer = currentQuestion.right_answer; // Richtige Antwort-Index
+  if (controllIndex >= 1) {
+    if (isSelected) {
+      const currentQuestion = quizData[currentIndex]; // Aktuelle Frage aus quizData
+      const correctAnswer = currentQuestion.right_answer; // Richtige Antwort-Index
 
-  let isCorrect = false; // Variable, um zu speichern, ob die Frage richtig beantwortet wurde
+      let isCorrect = false; // Variable, um zu speichern, ob die Frage richtig beantwortet wurde
 
-  // Überprüfe, ob die ausgewählte Antwort mit der richtigen Antwort übereinstimmt
-  if (selectedAnswer === correctAnswer) {
-    isCorrect = true; // Wenn richtig, setze den Wert auf true
+      // Überprüfe, ob die ausgewählte Antwort mit der richtigen Antwort übereinstimmt
+      if (selectedAnswer === correctAnswer) {
+        isCorrect = true; // Wenn richtig, setze den Wert auf true
+      } else {
+        isCorrect = false;
+      }
+      turnLEDOn();
+      // Speichere die Information, ob die Frage richtig oder falsch beantwortet wurde
+      quizData[currentIndex].isCorrect = isCorrect;
+      quizData[currentIndex].isDone = true; // Markiere die Frage als beantwortet
+    } else {
+      blinkLEDs(); // Funktion, um die LEDs blinken zu lassen, wenn keine Antwort ausgewählt wurde
+    }
   } else {
-    isCorrect = false;
   }
-  turnLEDOn();
-  // Speichere die Information, ob die Frage richtig oder falsch beantwortet wurde
-  quizData[currentIndex - 1].isCorrect = isCorrect;
-  quizData[currentIndex - 1].isDone = true; // Markiere die Frage als beantwortet
 }
 
 function turnLEDOn() {
   allLockLEDs.forEach((led, index) => {
-    const currentQuestion = quizData[currentIndex - 1];
+    const currentQuestion = quizData[currentIndex];
     const correctAnswer = currentQuestion.right_answer;
 
     if (index !== correctAnswer) {

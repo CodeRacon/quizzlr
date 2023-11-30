@@ -2,9 +2,9 @@ startData = [
   {
     imgOnScreen: 'img/start.gif',
     quizCardTitle: 'Hello there!',
-    quizCardTxt: 'Press >>NEXT<< to start quizzing. Good luck, pal!',
-    answer_1:
+    quizCardTxt:
       'Submit your answer by choosing it with the corresponding button and hit >>CONFIRM<< !',
+    answer_1: 'Press >>NEXT<< to start quizzing. Good luck, pal!',
     answer_2: '',
     answer_3: '',
     answer_4: '',
@@ -21,6 +21,7 @@ quizData = [
     answer_3: 'Strawberry Fields',
     answer_4: 'Lovely Rita',
     right_answer: 2,
+    isFirstQuestion: true,
   },
   {
     imgOnScreen: 'img/q02.gif',
@@ -81,7 +82,7 @@ quizData = [
     answer_2: 'Ghost',
     answer_3: 'Grim Reaper',
     answer_4: 'Dark Shadow',
-    right_answer: 3,
+    right_answer: 0,
   },
 
   {

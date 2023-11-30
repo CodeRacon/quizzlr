@@ -2,8 +2,13 @@
 //
 //
 let currentIndex = 0;
-
+let controllIndex = 0;
+let isStartRendered = false;
+//
 function init() {
+  isStartRendered = false;
+  isPowerOn = false;
+
   const displayedIMG = document.getElementById('img-display');
   const quizCardTitle = document.getElementById('quiz-card-title');
   const quizCardTxt = document.getElementById('quiz-card-text');
@@ -63,6 +68,8 @@ function init() {
 // }
 
 function renderStartScreen() {
+  isStartRendered = true;
+
   const displayedIMG = document.getElementById('img-display');
   const quizCardTitle = document.getElementById('quiz-card-title');
   const quizCardTxt = document.getElementById('quiz-card-text');
@@ -116,15 +123,46 @@ function renderStartScreen() {
 }
 
 function renderNextCard() {
-  if (currentIndex < quizData.length) {
-    renderQuizData(currentIndex);
-    currentIndex++;
+  if (isPowerOn) {
+    if (isStartRendered) {
+      // currentIndex = 0; // Starte von der ersten Quizseite
+      controllIndex++;
+      renderQuizData(currentIndex);
+      deactivateAnswerLED();
+      isStartRendered = false; // Zurücksetzen von isStartRendered
+    } else if (currentIndex < quizData.length) {
+      if (quizData[currentIndex].isDone) {
+        // Wenn die Frage beantwortet wurde, render die nächste Frage
+        currentIndex++;
+        controllIndex++;
+        renderQuizData(currentIndex);
+        deactivateAnswerLED();
+      } else {
+        blinkLEDs();
+        console.log('Beantworte die Frage zuerst!');
+      }
+    } else {
+      console.log('Quiz beendet!');
+    }
   } else {
-    console.log('Quiz finished!');
+    console.log('Bitte schalte die Power ein!');
   }
-
-  deactivateAnswerLED();
 }
+
+// if ((quizData[currentIndex].isFirstQuestion = true)) {
+//   if (currentIndex < quizData.length) {
+//     if (quizData[currentIndex].isDone) {
+//       renderQuizData(currentIndex);
+//       deactivateAnswerLED();
+//       currentIndex++;
+//     } else {
+//       blinkLEDs();
+//       console.log('Beantworte die Frage zuerst!');
+//     }
+//   } else {
+//     console.log('Quiz beendet!');
+//   }
+// }
 
 function typeWriter(text, elementId, speed) {
   let i = 0;

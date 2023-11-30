@@ -27,7 +27,7 @@
 
 body {
   min-height: 100vh;
-  background: radial-gradient(circle, #3f769e, #1d3f58) !important;
+  background: radial-gradient(circle, #3b6b8b, #0d273a) !important;
   font-size: 16px;
 }
 
@@ -286,7 +286,7 @@ header {
 }
 
 .overlay img {
-  filter: opacity(0.25) brightness(0.85);
+  filter: opacity(0.15) brightness(0.85);
   height: 100%;
 }
 
@@ -295,7 +295,7 @@ header {
   margin: 0 2.5rem;
   padding: 0.5rem;
   border-radius: 0.5rem;
-  color: #292d26;
+  color: rgba(40, 43, 38, 0.8);
   height: 9rem;
 
   border-bottom: 8px solid #78a9cc !important;
@@ -337,7 +337,8 @@ header {
 }
 
 .answer {
-  color: #122a41;
+  color: rgba(40, 43, 38, 0.8);
+
   text-shadow: 1px 2px 12px rgba(57, 44, 7, 0.35);
   margin: 0;
   border: none;
@@ -386,7 +387,8 @@ header {
 .card-body.answer-body {
   margin: 0;
   padding: 0.125rem 0.5rem;
-  color: #292d26;
+  color: rgba(40, 43, 38, 0.8);
+
   font-size: 1rem;
   font-family: 'PixelIntv', sans-serif;
 }
