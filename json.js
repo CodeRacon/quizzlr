@@ -4,9 +4,9 @@ startData = [
     quizCardTitle: 'Hello there!',
     quizCardTxt:
       'Submit your answer by choosing it with the corresponding button and hit >>CONFIRM<< !',
-    answer_1: 'Press >>NEXT<< to start quizzing. Good luck, pal!',
+    answer_1: 'Press >>NEXT<< to start quizzing.',
     answer_2: '',
-    answer_3: '',
+    answer_3: 'Good luck, pal!',
     answer_4: '',
   },
 ];
@@ -84,7 +84,6 @@ quizData = [
     answer_4: 'Dark Shadow',
     right_answer: 0,
   },
-
   {
     imgOnScreen: 'img/q08.gif',
     questionLED: 'q8LED',

@@ -5,7 +5,7 @@ let isPowerOn = false;
 function playBgSound() {
   if (isPowerOn && !isSoundOn) {
     if (!audio) {
-      audio = new Audio('audio/bg_loop.mp3'); // Passe die URL an deine Audio-Datei an
+      audio = new Audio('audio/bg_sound.wav'); // Passe die URL an deine Audio-Datei an
       audio.loop = true; // Um die MP3-Datei in einer Schleife abzuspielen
     }
     audio.play();
