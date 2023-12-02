@@ -51,6 +51,7 @@ function lightUpLEDs() {
       if ((index + 1) % 5 === 0) {
         completedRow++;
         allLockLEDs[completedRow - 1].classList.add('is-idle');
+        playOneBeepSound();
       }
 
       // Wenn alle Reihen komplett sind, starte den Blink-Teil der Animation
@@ -64,7 +65,7 @@ function lightUpLEDs() {
 
   setTimeout(() => {
     renderStartScreen();
-  }, 3500);
+  }, 3750);
 }
 
 function blinkLEDs() {
@@ -103,6 +104,7 @@ let selectedAnswer;
 let isSelected = false;
 //
 function selectAnswer(answer) {
+  playAnswerButtonSound();
   if (controllIndex >= 1) {
     console.log('selectedAnswer:', answer);
     selectedAnswer = answer;
@@ -123,8 +125,10 @@ function confirmAnswer(selectedAnswer) {
       // Überprüfe, ob die ausgewählte Antwort mit der richtigen Antwort übereinstimmt
       if (selectedAnswer === correctAnswer) {
         isCorrect = true; // Wenn richtig, setze den Wert auf true
+        playSuccessSound();
       } else {
         isCorrect = false;
+        playFailSound();
       }
       turnLEDOn();
       // Speichere die Information, ob die Frage richtig oder falsch beantwortet wurde
@@ -132,6 +136,7 @@ function confirmAnswer(selectedAnswer) {
       quizData[currentIndex].isDone = true; // Markiere die Frage als beantwortet
       colourCurrentLED();
     } else {
+      playBeepSound();
       blinkLEDs(); // Funktion, um die LEDs blinken zu lassen, wenn keine Antwort ausgewählt wurde
     }
   } else {

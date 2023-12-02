@@ -9,6 +9,7 @@ function init() {
   isStartRendered = false;
   isPowerOn = false;
   controllIndex = 0;
+  currentIndex = 0;
 
   const displayedIMG = document.getElementById('img-display');
   const quizCardTitle = document.getElementById('quiz-card-title');
@@ -85,20 +86,21 @@ function renderStartScreen() {
 
 function renderNextCard() {
   if (isPowerOn) {
+    playButtonSound();
     if (isStartRendered) {
-      controllIndex++;
+      // controllIndex++;
       renderQuizData(currentIndex);
       deactivateAnswerLED();
       isStartRendered = false;
     } else if (currentIndex < quizData.length) {
       if (quizData[currentIndex].isDone) {
         currentIndex++;
-        controllIndex++;
+        // controllIndex++;
         renderQuizData(currentIndex);
         deactivateAnswerLED();
       } else {
         blinkLEDs();
-        console.log('Beantworte die Frage zuerst!');
+        playBeepSound();
       }
     } else if (
       controllIndex === quizData.length + 1 &&
@@ -111,6 +113,8 @@ function renderNextCard() {
 }
 
 function renderQuizData(currentIndex) {
+  controllIndex++;
+
   const quizJSON = quizData[currentIndex];
 
   const displayedIMG = document.getElementById('img-display');
@@ -187,9 +191,12 @@ function quizSummary() {
 
   const correctAnswers = countCorrectAnswers();
 
-  controllIndex;
+  const lastLED = document.getElementById('q5LED');
+  lastLED.classList.remove('pulsating');
 
-  displayedIMG.innerHTML = 'img/mesh.jpeg';
+  playEndSound();
+
+  displayedIMG.innerHTML = '';
   quizCardTitle.innerHTML = '';
   quizCardTxt.innerHTML = '';
   answerTxt1.innerHTML = '';
@@ -198,13 +205,50 @@ function quizSummary() {
   answerTxt4.innerHTML = '';
 
   quizCardTitle.innerHTML = 'Quiz-Summary';
+  displayedIMG.src = 'img/end.gif';
 
   if (correctAnswers <= 5) {
     quizCardTxt.innerHTML = /*html*/ `
       Wow! You got ${correctAnswers} ...at least you did your best. I guess. Hit >>NEXT<< to start over.
     `;
     answerTxt1.innerHTML = 'No worries. Just give it one more try.';
-    answerTxt2.innerHTML = 'In your case: maybe 10...who knows.';
+    answerTxt3.innerHTML = 'Or in your case: maybe ten will do!';
+  }
+
+  if (correctAnswers >= 5 && correctAnswers <= 10) {
+    quizCardTxt.innerHTML = /*html*/ `
+      ${correctAnswers} out of 20 is not that bad! You can do better I guess. Hit >>NEXT<< to start over.
+    `;
+    answerTxt1.innerHTML = 'No worries. Just give it one more try.';
+    answerTxt3.innerHTML = 'You can do it!';
+  }
+
+  if (correctAnswers >= 11 && correctAnswers <= 15) {
+    quizCardTxt.innerHTML = /*html*/ `
+      ${correctAnswers} out of 20 is pretty good! Can you get all green? Hit >>NEXT<< to start over.
+    `;
+    answerTxt1.innerHTML = 'Almost there!';
+    answerTxt2.innerHTML = 'Just give it one more try.';
+    answerTxt4.innerHTML = 'You can do it!';
+  }
+
+  if (correctAnswers >= 16 && correctAnswers <= 19) {
+    quizCardTxt.innerHTML = /*html*/ `
+     Whoa! ${correctAnswers} correct answers! Go for all-green and hit >>NEXT<< to start over.
+    `;
+    answerTxt1.innerHTML = 'Just give it one more try.';
+    answerTxt3.innerHTML = 'You can do it!!!';
+  }
+
+  if (correctAnswers === 20) {
+    quizCardTitle.innerHTML = '';
+    quizCardTitle.innerHTML = 'YOU DID IT! ALL-GREEN!';
+
+    quizCardTxt.innerHTML = /*html*/ `
+      20 out of 20...that is really something! <br>Very well done, mate!  
+    `;
+    answerTxt1.innerHTML = 'Turn the off the device when finished!';
+    answerTxt3.innerHTML = 'Thanks!';
   }
 }
 
@@ -213,7 +257,8 @@ function restartQuiz() {
   controllIndex = 0;
   isStartRendered = true;
   initializeLEDs();
-  renderQuizData(currentIndex);
+  renderNextCard();
+  stopBgSound();
 }
 
 function typeWriter(text, elementId, speed) {
@@ -222,12 +267,31 @@ function typeWriter(text, elementId, speed) {
   if (!targetElement || !text) return;
 
   function type() {
+    if (!isPowerOn) {
+      // Abbrechen der Animation, wenn der Power-Switch auf "Off" gesetzt wird
+      return;
+    }
+
     if (i < text.length) {
       targetElement.innerHTML += text.charAt(i);
       i++;
       setTimeout(type, speed);
     }
   }
-
   type();
+}
+
+function stopTextAnimation() {
+  allTextContent = [
+    document.getElementById('quiz-card-title'),
+    document.getElementById('quiz-card-text'),
+    document.getElementById('answer-txt-1'),
+    document.getElementById('answer-txt-2'),
+    document.getElementById('answer-txt-3'),
+    document.getElementById('answer-txt-4'),
+  ];
+
+  allTextContent.forEach((text) => {
+    text.innerHTML = '';
+  });
 }

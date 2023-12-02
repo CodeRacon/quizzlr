@@ -161,11 +161,16 @@
             </div>
           </div>
           <div class="confirm">
-            <button type="button" onclick="confirmAnswer(selectedAnswer)">
+            <button
+              id="confirm-btn"
+              type="button"
+              onclick="confirmAnswer(selectedAnswer)">
               confirm
             </button>
             <div class="spacer rotated-90"></div>
-            <button type="button" onclick="renderNextCard()">next</button>
+            <button id="next-btn" type="button" onclick="renderNextCard()">
+              next
+            </button>
           </div>
           <div class="spacer rotated-180"></div>
           <div class="progress-panel">
