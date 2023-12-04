@@ -256,6 +256,12 @@ function restartQuiz() {
   currentIndex = 0;
   controllIndex = 0;
   isStartRendered = true;
+
+  for (let i = 0; i < quizData.length; i++) {
+    quizData[i].isDone = false;
+    quizData[i].isAnswerConfirmed = false;
+  }
+
   initializeLEDs();
   renderNextCard();
   stopBgSound();
@@ -279,19 +285,4 @@ function typeWriter(text, elementId, speed) {
     }
   }
   type();
-}
-
-function stopTextAnimation() {
-  allTextContent = [
-    document.getElementById('quiz-card-title'),
-    document.getElementById('quiz-card-text'),
-    document.getElementById('answer-txt-1'),
-    document.getElementById('answer-txt-2'),
-    document.getElementById('answer-txt-3'),
-    document.getElementById('answer-txt-4'),
-  ];
-
-  allTextContent.forEach((text) => {
-    text.innerHTML = '';
-  });
 }

@@ -59,7 +59,6 @@ function togglePowerSwitch() {
       powerSwitch.classList.add('off-position');
       soundSwitch.classList.remove('on-position');
       soundSwitch.classList.add('off-position');
-      stopTextAnimation();
       stopBgSound();
       isPowerOn = false;
       init();

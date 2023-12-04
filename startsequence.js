@@ -114,32 +114,98 @@ function selectAnswer(answer) {
   }
 }
 
+// function confirmAnswer(selectedAnswer) {
+//   if (controllIndex >= 1) {
+//     if (isSelected) {
+//       const currentQuestion = quizData[currentIndex]; // Aktuelle Frage aus quizData
+//       const correctAnswer = currentQuestion.right_answer; // Richtige Antwort-Index
+
+//       let isCorrect = false; // Variable, um zu speichern, ob die Frage richtig beantwortet wurde
+
+//       // Überprüfe, ob die ausgewählte Antwort mit der richtigen Antwort übereinstimmt
+//       if (selectedAnswer === correctAnswer) {
+//         isCorrect = true; // Wenn richtig, setze den Wert auf true
+//         playSuccessSound();
+//       } else {
+//         isCorrect = false;
+//         playFailSound();
+//       }
+//       turnLEDOn();
+//       // Speichere die Information, ob die Frage richtig oder falsch beantwortet wurde
+//       quizData[currentIndex].isCorrect = isCorrect;
+//       quizData[currentIndex].isDone = true; // Markiere die Frage als beantwortet
+//       colourCurrentLED();
+//     } else {
+//       playBeepSound();
+//       blinkLEDs(); // Funktion, um die LEDs blinken zu lassen, wenn keine Antwort ausgewählt wurde
+//     }
+//   } else {
+//   }
+// }
+
+let isAnswerConfirmed = false;
+
+// function confirmAnswer(selectedAnswer) {
+//   if (controllIndex >= 1 && !isAnswerConfirmed) {
+//     if (isSelected) {
+//       const currentQuestion = quizData[currentIndex];
+//       const correctAnswer = currentQuestion.right_answer;
+
+//       let isCorrect = false;
+
+//       if (selectedAnswer === correctAnswer) {
+//         isCorrect = true;
+//         playSuccessSound();
+//       } else {
+//         isCorrect = false;
+//         playFailSound();
+//       }
+//       turnLEDOn();
+//       quizData[currentIndex].isCorrect = isCorrect;
+//       quizData[currentIndex].isDone = true;
+//       colourCurrentLED();
+
+//       isAnswerConfirmed = true; // Setze den Bestätigungsstatus auf true
+//     } else {
+//       playBeepSound();
+//       blinkLEDs();
+//     }
+//   } else {
+//     // Handle the case when the answer is already confirmed or the index condition is not met
+//   }
+// }
+
 function confirmAnswer(selectedAnswer) {
   if (controllIndex >= 1) {
-    if (isSelected) {
-      const currentQuestion = quizData[currentIndex]; // Aktuelle Frage aus quizData
-      const correctAnswer = currentQuestion.right_answer; // Richtige Antwort-Index
+    const currentQuestion = quizData[currentIndex];
 
-      let isCorrect = false; // Variable, um zu speichern, ob die Frage richtig beantwortet wurde
+    if (!currentQuestion.isAnswerConfirmed) {
+      if (isSelected) {
+        const correctAnswer = currentQuestion.right_answer;
+        let isCorrect = false;
 
-      // Überprüfe, ob die ausgewählte Antwort mit der richtigen Antwort übereinstimmt
-      if (selectedAnswer === correctAnswer) {
-        isCorrect = true; // Wenn richtig, setze den Wert auf true
-        playSuccessSound();
+        if (selectedAnswer === correctAnswer) {
+          isCorrect = true;
+          playSuccessSound();
+        } else {
+          isCorrect = false;
+          playFailSound();
+        }
+        turnLEDOn();
+        currentQuestion.isCorrect = isCorrect;
+        currentQuestion.isDone = true;
+        colourCurrentLED();
+
+        currentQuestion.isAnswerConfirmed = true; // Setze den Bestätigungsstatus auf true
       } else {
-        isCorrect = false;
-        playFailSound();
+        playBeepSound();
+        blinkLEDs();
       }
-      turnLEDOn();
-      // Speichere die Information, ob die Frage richtig oder falsch beantwortet wurde
-      quizData[currentIndex].isCorrect = isCorrect;
-      quizData[currentIndex].isDone = true; // Markiere die Frage als beantwortet
-      colourCurrentLED();
     } else {
-      playBeepSound();
-      blinkLEDs(); // Funktion, um die LEDs blinken zu lassen, wenn keine Antwort ausgewählt wurde
+      // Behandeln des Falls, wenn die Antwort bereits bestätigt wurde
     }
   } else {
+    // Behandeln des Falls, wenn der Index nicht erfüllt ist
   }
 }
 
