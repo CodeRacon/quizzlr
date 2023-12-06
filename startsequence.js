@@ -23,7 +23,7 @@ function initializeLEDs() {
   if (controllIndex === 0) {
     allProgressLEDs.forEach((led) => {
       led.classList.toggle('is-off', true);
-      led.classList.remove('is-idle', 'is-wrong', 'is-correct');
+      led.classList.remove('is-idle', 'is-wrong', 'is-correct', 'pulsating');
     });
 
     allLockLEDs.forEach((lockLED) => {

@@ -11,6 +11,8 @@ function init() {
   controllIndex = 0;
   currentIndex = 0;
 
+  initializeLEDs();
+
   const displayedIMG = document.getElementById('img-display');
   const quizCardTitle = document.getElementById('quiz-card-title');
   const quizCardTxt = document.getElementById('quiz-card-text');
