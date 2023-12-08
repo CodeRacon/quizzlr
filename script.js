@@ -8,27 +8,35 @@ function toggleSoundSwitch() {
 
   if (powerSwitch.classList.contains('power-on')) {
     if (soundSwitch.classList.contains('sound-off')) {
-      soundSwitch.classList.remove('sound-off');
-      soundSwitch.classList.add('sound-on');
-
-      setTimeout(() => {
-        soundSwitch.classList.remove('off-position');
-        soundSwitch.classList.add('on-position');
-      }, 335);
-
-      playBgSound();
+      switchSoundOn(soundSwitch);
     } else {
-      soundSwitch.classList.remove('sound-on');
-      soundSwitch.classList.add('sound-off');
-
-      setTimeout(() => {
-        soundSwitch.classList.remove('on-position');
-        soundSwitch.classList.add('off-position');
-
-        stopBgSound();
-      }, 335);
+      switchSoundOff(soundSwitch);
     }
   }
+}
+
+function switchSoundOn(soundSwitch) {
+  soundSwitch.classList.remove('sound-off');
+  soundSwitch.classList.add('sound-on');
+
+  setTimeout(() => {
+    soundSwitch.classList.remove('off-position');
+    soundSwitch.classList.add('on-position');
+  }, 335);
+
+  playBgSound();
+}
+
+function switchSoundOff(soundSwitch) {
+  soundSwitch.classList.remove('sound-on');
+  soundSwitch.classList.add('sound-off');
+
+  setTimeout(() => {
+    soundSwitch.classList.remove('on-position');
+    soundSwitch.classList.add('off-position');
+
+    stopBgSound();
+  }, 335);
 }
 
 function togglePowerSwitch() {
@@ -36,34 +44,42 @@ function togglePowerSwitch() {
   const soundSwitch = document.getElementById('sound-switch');
   controllIndex = 0;
   if (powerSwitch.classList.contains('power-off')) {
-    powerSwitch.classList.remove('power-off');
-    powerSwitch.classList.add('power-on');
-    playPowerOnSound();
-
-    setTimeout(() => {
-      powerSwitch.classList.remove('off-position');
-      powerSwitch.classList.add('on-position');
-      lightUpLEDs();
-    }, 335);
-    initializeLEDs();
-    isPowerOn = true;
+    switchPowerOn(powerSwitch, soundSwitch);
   } else {
-    powerSwitch.classList.remove('power-on');
-    powerSwitch.classList.add('power-off');
-    playPowerOffSound();
-    soundSwitch.classList.remove('sound-on');
-    soundSwitch.classList.add('sound-off');
-
-    setTimeout(() => {
-      powerSwitch.classList.remove('on-position');
-      powerSwitch.classList.add('off-position');
-      soundSwitch.classList.remove('on-position');
-      soundSwitch.classList.add('off-position');
-      stopBgSound();
-      isPowerOn = false;
-      init();
-    }, 335);
+    switchPowerOff(powerSwitch, soundSwitch);
   }
+}
+
+function switchPowerOn(powerSwitch) {
+  powerSwitch.classList.remove('power-off');
+  powerSwitch.classList.add('power-on');
+  playPowerOnSound();
+
+  setTimeout(() => {
+    powerSwitch.classList.remove('off-position');
+    powerSwitch.classList.add('on-position');
+    lightUpLEDs();
+  }, 335);
+  initializeLEDs();
+  isPowerOn = true;
+}
+
+function switchPowerOff(powerSwitch, soundSwitch) {
+  powerSwitch.classList.remove('power-on');
+  powerSwitch.classList.add('power-off');
+  playPowerOffSound();
+  soundSwitch.classList.remove('sound-on');
+  soundSwitch.classList.add('sound-off');
+
+  setTimeout(() => {
+    powerSwitch.classList.remove('on-position');
+    powerSwitch.classList.add('off-position');
+    soundSwitch.classList.remove('on-position');
+    soundSwitch.classList.add('off-position');
+    stopBgSound();
+    isPowerOn = false;
+    init();
+  }, 335);
 }
 
 function playBgSound() {

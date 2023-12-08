@@ -103,6 +103,7 @@ function renderNextCard() {
       } else {
         blinkLEDs();
         playBeepSound();
+        isSelected = false;
       }
     } else if (
       controllIndex === quizData.length + 1 &&
@@ -195,8 +196,7 @@ function quizSummary() {
 
   const lastLED = document.getElementById('q5LED');
   lastLED.classList.remove('pulsating');
-
-  playEndSound();
+  switchSoundOff(soundSwitch);
 
   displayedIMG.innerHTML = '';
   quizCardTitle.innerHTML = '';

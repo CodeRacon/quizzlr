@@ -7,11 +7,6 @@ const allLockLEDs = [
   document.getElementById('a4LED'),
 ];
 
-// Animation-Settings
-const totalAnimationDuration = 5250;
-const blinkCycles = 3;
-const blinkDelay = 0;
-
 function initializeLEDs() {
   const allProgressLEDs = document.querySelectorAll('.progress-light');
   const allLockLEDs = [
@@ -106,7 +101,6 @@ let isSelected = false;
 function selectAnswer(answer) {
   playAnswerButtonSound();
   if (controllIndex >= 1) {
-    console.log('selectedAnswer:', answer);
     selectedAnswer = answer;
     isSelected = true;
     activateAnswerLED(answer);
@@ -114,66 +108,7 @@ function selectAnswer(answer) {
   }
 }
 
-// function confirmAnswer(selectedAnswer) {
-//   if (controllIndex >= 1) {
-//     if (isSelected) {
-//       const currentQuestion = quizData[currentIndex]; // Aktuelle Frage aus quizData
-//       const correctAnswer = currentQuestion.right_answer; // Richtige Antwort-Index
-
-//       let isCorrect = false; // Variable, um zu speichern, ob die Frage richtig beantwortet wurde
-
-//       // Überprüfe, ob die ausgewählte Antwort mit der richtigen Antwort übereinstimmt
-//       if (selectedAnswer === correctAnswer) {
-//         isCorrect = true; // Wenn richtig, setze den Wert auf true
-//         playSuccessSound();
-//       } else {
-//         isCorrect = false;
-//         playFailSound();
-//       }
-//       turnLEDOn();
-//       // Speichere die Information, ob die Frage richtig oder falsch beantwortet wurde
-//       quizData[currentIndex].isCorrect = isCorrect;
-//       quizData[currentIndex].isDone = true; // Markiere die Frage als beantwortet
-//       colourCurrentLED();
-//     } else {
-//       playBeepSound();
-//       blinkLEDs(); // Funktion, um die LEDs blinken zu lassen, wenn keine Antwort ausgewählt wurde
-//     }
-//   } else {
-//   }
-// }
-
 let isAnswerConfirmed = false;
-
-// function confirmAnswer(selectedAnswer) {
-//   if (controllIndex >= 1 && !isAnswerConfirmed) {
-//     if (isSelected) {
-//       const currentQuestion = quizData[currentIndex];
-//       const correctAnswer = currentQuestion.right_answer;
-
-//       let isCorrect = false;
-
-//       if (selectedAnswer === correctAnswer) {
-//         isCorrect = true;
-//         playSuccessSound();
-//       } else {
-//         isCorrect = false;
-//         playFailSound();
-//       }
-//       turnLEDOn();
-//       quizData[currentIndex].isCorrect = isCorrect;
-//       quizData[currentIndex].isDone = true;
-//       colourCurrentLED();
-
-//       isAnswerConfirmed = true; // Setze den Bestätigungsstatus auf true
-//     } else {
-//       playBeepSound();
-//       blinkLEDs();
-//     }
-//   } else {
-//     // Handle the case when the answer is already confirmed or the index condition is not met
-//   }
-// }
 
 function confirmAnswer(selectedAnswer) {
   if (controllIndex >= 1) {
@@ -281,18 +216,3 @@ function colourCurrentLED() {
     currentLED.classList.add('is-wrong', 'pulsating');
   }
 }
-
-// function colourCurrentLED() {
-//   const currentQuestion = quizData[currentIndex];
-//   const isCorrect = currentQuestion.isCorrect;
-
-//   const currentLED = document.getElementById(currentQuestion.questionLED);
-
-//   currentLED.classList.remove('is-idle', 'is-wrong', 'is-correct', 'pulsating');
-
-//   if (isCorrect) {
-//     currentLED.classList.add('is-correct', 'pulsating');
-//   } else {
-//     currentLED.classList.add('is-wrong', 'pulsating');
-//   }
-// }

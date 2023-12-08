@@ -874,7 +874,7 @@ footer {
   color: #8c9daa;
   font-family: 'EarlyGameBoy';
   font-size: 0.5rem;
-  text-align: left;
+  text-align: center;
   padding: 0rem;
 }
 
@@ -891,7 +891,7 @@ footer {
 
   .quiz-card {
     position: relative;
-    width: 320px;
+    width: clamp(20rem, 100vw + 0rem, 32rem);
   }
 
   .logo-sign {
@@ -956,5 +956,9 @@ footer {
   }
 
   .progress-light::after {
+  }
+
+  .madebyme--svg {
+    margin-bottom: 1rem;
   }
 }
