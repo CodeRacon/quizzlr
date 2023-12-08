@@ -67,7 +67,7 @@ quizData = [
   {
     imgOnScreen: 'img/q06.gif',
     questionLED: 'q6LED',
-    question: 'What is the name of this well suited problem-solver?',
+    question: 'Who did take care of the "Bonnie Situation"?',
     answer_1: 'Mr. Brown',
     answer_2: 'Mr. Black',
     answer_3: 'Mr. Wolf',
@@ -87,7 +87,7 @@ quizData = [
   {
     imgOnScreen: 'img/q08.gif',
     questionLED: 'q8LED',
-    question: 'What is the hex code for this caring family-fathers last name?',
+    question: 'What is the hex code for this caring family-fathers surname?',
     answer_1: '#ffffff',
     answer_2: '#IIIIII',
     answer_3: '#111111',

@@ -154,6 +154,8 @@ function turnLEDOn() {
       led.classList.remove('is-off');
       led.classList.add('is-wrong');
     } else {
+      led.classList.remove('is-idle');
+      led.classList.remove('is-off');
       led.classList.add('is-correct');
     }
   });
@@ -189,15 +191,14 @@ function deactivateAnswerLED() {
 
 function activateCurrentLED(currentIndex) {
   const allLEDs = document.querySelectorAll('.progress-light');
+  const currentQuestion = quizData[currentIndex];
+  const currentLED = document.getElementById(currentQuestion.questionLED);
 
   allLEDs.forEach((led) => {
     led.classList.remove('is-off');
     led.classList.remove('is-idle');
     led.classList.remove('pulsating');
   });
-
-  const currentQuestion = quizData[currentIndex];
-  const currentLED = document.getElementById(currentQuestion.questionLED);
 
   currentLED.classList.add('is-idle');
   currentLED.classList.add('pulsating');
@@ -209,10 +210,10 @@ function colourCurrentLED() {
   const currentLED = document.getElementById(currentQuestion.questionLED);
 
   if (isCorrect === true) {
-    currentLED.classList.remove('is-idle', 'pulsating');
-    currentLED.classList.add('is-correct', 'pulsating');
+    currentLED.classList.remove('is-idle');
+    currentLED.classList.add('is-correct');
   } else {
-    currentLED.classList.remove('is-idle', 'pulsating');
-    currentLED.classList.add('is-wrong', 'pulsating');
+    currentLED.classList.remove('is-idle');
+    currentLED.classList.add('is-wrong');
   }
 }

@@ -2,6 +2,49 @@ let isSoundOn = false;
 let isPowerOn = false;
 let audio;
 
+function togglePowerSwitch() {
+  const powerSwitch = document.getElementById('power-switch');
+  const soundSwitch = document.getElementById('sound-switch');
+  controllIndex = 0;
+  if (powerSwitch.classList.contains('power-off')) {
+    switchPowerOn(powerSwitch, soundSwitch);
+  } else {
+    switchPowerOff(powerSwitch, soundSwitch);
+  }
+}
+
+function switchPowerOn(powerSwitch, soundSwitch) {
+  powerSwitch.classList.remove('power-off');
+  powerSwitch.classList.add('power-on');
+  playPowerOnSound();
+
+  setTimeout(() => {
+    powerSwitch.classList.remove('off-position');
+    powerSwitch.classList.add('on-position');
+    lightUpLEDs();
+  }, 335);
+  initializeLEDs();
+  isPowerOn = true;
+}
+
+function switchPowerOff(powerSwitch, soundSwitch) {
+  powerSwitch.classList.remove('power-on');
+  powerSwitch.classList.add('power-off');
+  playPowerOffSound();
+  soundSwitch.classList.remove('sound-on');
+  soundSwitch.classList.add('sound-off');
+
+  setTimeout(() => {
+    powerSwitch.classList.remove('on-position');
+    powerSwitch.classList.add('off-position');
+    soundSwitch.classList.remove('on-position');
+    soundSwitch.classList.add('off-position');
+    stopBgSound();
+    isPowerOn = false;
+    init();
+  }, 335);
+}
+
 function toggleSoundSwitch() {
   const soundSwitch = document.getElementById('sound-switch');
   const powerSwitch = document.getElementById('power-switch');
@@ -39,56 +82,13 @@ function switchSoundOff(soundSwitch) {
   }, 335);
 }
 
-function togglePowerSwitch() {
-  const powerSwitch = document.getElementById('power-switch');
-  const soundSwitch = document.getElementById('sound-switch');
-  controllIndex = 0;
-  if (powerSwitch.classList.contains('power-off')) {
-    switchPowerOn(powerSwitch, soundSwitch);
-  } else {
-    switchPowerOff(powerSwitch, soundSwitch);
-  }
-}
-
-function switchPowerOn(powerSwitch) {
-  powerSwitch.classList.remove('power-off');
-  powerSwitch.classList.add('power-on');
-  playPowerOnSound();
-
-  setTimeout(() => {
-    powerSwitch.classList.remove('off-position');
-    powerSwitch.classList.add('on-position');
-    lightUpLEDs();
-  }, 335);
-  initializeLEDs();
-  isPowerOn = true;
-}
-
-function switchPowerOff(powerSwitch, soundSwitch) {
-  powerSwitch.classList.remove('power-on');
-  powerSwitch.classList.add('power-off');
-  playPowerOffSound();
-  soundSwitch.classList.remove('sound-on');
-  soundSwitch.classList.add('sound-off');
-
-  setTimeout(() => {
-    powerSwitch.classList.remove('on-position');
-    powerSwitch.classList.add('off-position');
-    soundSwitch.classList.remove('on-position');
-    soundSwitch.classList.add('off-position');
-    stopBgSound();
-    isPowerOn = false;
-    init();
-  }, 335);
-}
-
 function playBgSound() {
   if (isPowerOn && !isSoundOn) {
     if (!audio) {
       audio = new Audio('audio/bg_loop.mp3'); // Passe die URL an deine Audio-Datei an
       audio.loop = true; // Um die MP3-Datei in einer Schleife abzuspielen
     }
-    audio.volume = 0.2; // Setze die Lautstärke auf 0.5
+    audio.volume = 0.125; // Setze die Lautstärke auf 0.5
     audio.play();
     isSoundOn = true;
   }
