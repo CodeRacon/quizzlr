@@ -1,4 +1,5 @@
-// // LEDs
+//
+// VARIABLES
 const allProgressLEDs = document.querySelectorAll('.progress-light');
 const allLockLEDs = [
   document.getElementById('a1LED'),
@@ -6,6 +7,9 @@ const allLockLEDs = [
   document.getElementById('a3LED'),
   document.getElementById('a4LED'),
 ];
+let selectedAnswer;
+let isSelected = false;
+let isAnswerConfirmed = false;
 
 function initializeLEDs() {
   const allProgressLEDs = document.querySelectorAll('.progress-light');
@@ -94,10 +98,6 @@ function blinkLEDs() {
   }
 }
 
-//
-let selectedAnswer;
-let isSelected = false;
-//
 function selectAnswer(answer) {
   playAnswerButtonSound();
   if (controllIndex >= 1) {
@@ -107,8 +107,6 @@ function selectAnswer(answer) {
   } else {
   }
 }
-
-let isAnswerConfirmed = false;
 
 function confirmAnswer(selectedAnswer) {
   if (controllIndex >= 1) {
