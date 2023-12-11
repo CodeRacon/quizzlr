@@ -1,5 +1,4 @@
 //
-// VARIABLES
 
 /** Node-list representing the 20 progress-LEDs. */
 const allProgressLEDs = document.querySelectorAll('.progress-light');
@@ -204,13 +203,6 @@ function turnLEDOn() {
     }
   });
 }
-
-// function turnLockLEDsOff() {
-//   allLockLEDs.forEach((lockLED) => {
-//     lockLED.classList.toggle('is-off', true);
-//     lockLED.classList.remove('is-idle', 'is-wrong', 'is-correct');
-//   });
-// }
 
 /**
  * This function activates the LED associated with the selected answer and removes idle status (yellow) from all other LEDs.
