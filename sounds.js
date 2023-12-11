@@ -1,7 +1,21 @@
+/** shows, if background-sound is on (playing) or not  */
 let isSoundOn = false;
+/** shows, if power is on or not  */
 let isPowerOn = false;
 let audio;
 
+const nextButton = document.getElementById('next-btn');
+const confirmButton = document.getElementById('confirm-btn');
+
+/** Array representing the 4 numbered buttons to choose the corresponding answer. */
+const allAnswerButtons = [
+  document.getElementById('a1Switch'),
+  document.getElementById('a2Switch'),
+  document.getElementById('a3Switch'),
+  document.getElementById('a4Switch'),
+];
+
+/** Toggles the power switch by changing its state between on and off. */
 function togglePowerSwitch() {
   const powerSwitch = document.getElementById('power-switch');
   const soundSwitch = document.getElementById('sound-switch');
@@ -13,7 +27,14 @@ function togglePowerSwitch() {
   }
 }
 
-function switchPowerOn(powerSwitch, soundSwitch) {
+/**
+ * - Changes the power switch state to 'on'
+ * - Runs the switch-animation
+ * - Runs the LED-Start-Animation by calling {@link lightUpLEDs}
+ * - Runs {@link playPowerOnSound}
+ * @param {HTMLElement} powerSwitch - The HTML element representing the power switch.
+ */
+function switchPowerOn(powerSwitch) {
   powerSwitch.classList.remove('power-off');
   powerSwitch.classList.add('power-on');
   playPowerOnSound();
@@ -27,6 +48,14 @@ function switchPowerOn(powerSwitch, soundSwitch) {
   isPowerOn = true;
 }
 
+/**
+ * - Changes the power switch AND the sound state to 'off'
+ * - Runs the switch-animation
+ * - turns all LEDs off by calling {@link init}
+ * - Runs {@link playPowerOffSound}
+ * @param {HTMLElement} powerSwitch - The HTML element representing the power switch.
+ * @param {HTMLElement} soundSwitch - The HTML element representing the sound switch.
+ */
 function switchPowerOff(powerSwitch, soundSwitch) {
   powerSwitch.classList.remove('power-on');
   powerSwitch.classList.add('power-off');
@@ -45,6 +74,11 @@ function switchPowerOff(powerSwitch, soundSwitch) {
   }, 335);
 }
 
+/**
+ * Toggles the sound switch by changing its state between on and off.
+ * @param {HTMLElement} powerSwitch - The HTML element representing the power switch.
+ * @param {HTMLElement} soundSwitch - The HTML element representing the sound switch.
+ */
 function toggleSoundSwitch() {
   const soundSwitch = document.getElementById('sound-switch');
   const powerSwitch = document.getElementById('power-switch');
@@ -58,6 +92,12 @@ function toggleSoundSwitch() {
   }
 }
 
+/**
+ * - Changes the sound switch state to 'on'
+ * - Runs the switch-animation
+ * - Runs {@link playBgSound}
+ * @param {HTMLElement} soundSwitch - The HTML element representing the sound switch.
+ */
 function switchSoundOn(soundSwitch) {
   soundSwitch.classList.remove('sound-off');
   soundSwitch.classList.add('sound-on');
@@ -70,6 +110,12 @@ function switchSoundOn(soundSwitch) {
   playBgSound();
 }
 
+/**
+ * - Changes the sound switch state to 'off'
+ * - Runs the switch-animation
+ * - Runs {@link stopBgSound}
+ * @param {HTMLElement} soundSwitch - The HTML element representing the sound switch.
+ */
 function switchSoundOff(soundSwitch) {
   soundSwitch.classList.remove('sound-on');
   soundSwitch.classList.add('sound-off');
@@ -82,13 +128,24 @@ function switchSoundOff(soundSwitch) {
   }, 335);
 }
 
+/* set up EventListeners for certain buttons to allways make a "clicky" feedback-sound */
+
+nextButton.addEventListener('click', playButtonSound);
+confirmButton.addEventListener('click', playButtonSound);
+
+allAnswerButtons.forEach((button) => {
+  button.addEventListener('click', playAnswerButtonSound);
+});
+
+/* The following functions are playing (in one case stopping) audio files */
+
 function playBgSound() {
   if (isPowerOn && !isSoundOn) {
     if (!audio) {
-      audio = new Audio('audio/bg_loop.mp3'); // Passe die URL an deine Audio-Datei an
-      audio.loop = true; // Um die MP3-Datei in einer Schleife abzuspielen
+      audio = new Audio('audio/bg_loop.mp3');
+      audio.loop = true;
     }
-    audio.volume = 0.125; // Setze die Lautstärke auf 0.5
+    audio.volume = 0.125;
     audio.play();
     isSoundOn = true;
   }
@@ -97,7 +154,7 @@ function playBgSound() {
 function stopBgSound() {
   if (isSoundOn && audio) {
     audio.pause();
-    audio.currentTime = 0; // Setze die Wiedergabe auf den Anfang zurück
+    audio.currentTime = 0;
     isSoundOn = false;
   }
 }
@@ -152,20 +209,3 @@ function playEndSound() {
   endSound.volume = 0.5;
   endSound.play();
 }
-
-const nextButton = document.getElementById('next-btn');
-const confirmButton = document.getElementById('confirm-btn');
-
-nextButton.addEventListener('click', playButtonSound);
-confirmButton.addEventListener('click', playButtonSound);
-
-const allAnswerButtons = [
-  document.getElementById('a1Switch'),
-  document.getElementById('a2Switch'),
-  document.getElementById('a3Switch'),
-  document.getElementById('a4Switch'),
-];
-
-allAnswerButtons.forEach((button) => {
-  button.addEventListener('click', playAnswerButtonSound);
-});

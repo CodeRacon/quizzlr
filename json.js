@@ -1,3 +1,4 @@
+/** Array containing all start-screen information */
 startData = [
   {
     imgOnScreen: 'img/start.gif',
@@ -11,6 +12,7 @@ startData = [
   },
 ];
 
+/** Array containing all quiz-card information */
 quizData = [
   {
     imgOnScreen: 'img/q01.gif',
@@ -21,7 +23,6 @@ quizData = [
     answer_3: 'Strawberry Fields',
     answer_4: 'Lovely Rita',
     right_answer: 2,
-    isFirstQuestion: true,
   },
   {
     imgOnScreen: 'img/q02.gif',

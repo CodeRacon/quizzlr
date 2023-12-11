@@ -9,6 +9,7 @@ const answerTxt2 = document.getElementById('answer-txt-2');
 const answerTxt3 = document.getElementById('answer-txt-3');
 const answerTxt4 = document.getElementById('answer-txt-4');
 
+/** array, containing all the IDs for HTML-Elements that include text */
 const textElementIDs = [
   'quiz-card-title',
   'quiz-card-text',
@@ -18,12 +19,21 @@ const textElementIDs = [
   'answer-txt-4',
 ];
 
+/** represents the current index related to the quizData array */
 let currentIndex = 0;
+
+/** represents an index that comes in handy when creating certain conditions for button -and display functionalities  */
 let controllIndex = 0;
+
+/** shows, whether the start-screen has been rendered  */
 let isStartRendered = false;
 
-// FUNCTIONS
-
+/**
+ * Initializes the application by setting it to a clean start-state by:
+ * - resetting all LEDs to an off-state
+ * - setting the two main indexes back to 0
+ * - emptying the text-elements
+ */
 function init() {
   isPowerOn = false;
   isStartRendered = false;
@@ -41,15 +51,24 @@ function init() {
   });
 }
 
+/**
+ * Renders the start screen of the application by:
+ * - accessing the startData-information to
+ *    - fill the text-elements and animate it
+ *      with {@link animateText}
+ *    - fill the img-element
+ */
 function renderStartScreen() {
   isStartRendered = true;
   displayedIMG.src = startData[0].imgOnScreen;
+
   textElementIDs.forEach((elementId) => {
     const element = document.getElementById(elementId);
     if (element) {
       element.innerHTML = '';
     }
   });
+
   const startTexts = [
     startData[0].quizCardTitle,
     startData[0].quizCardTxt,
@@ -62,6 +81,16 @@ function renderStartScreen() {
   animateText(startTexts);
 }
 
+/**
+ * Due to the limitation of having only one controll-button, the rendering
+ * of the next card in the quiz-flow is based on various conditions.
+ * - {@link renderQuizData} - render following quiz-card
+ * - {@link restartQuiz} - starts quiz over
+ * This function also controls several LED states:
+ * - {@link deactivateAnswerLED} - reset LEDs after revealing color-feedback
+ * - {@link blinkLEDs} - short blink-cycle to give a "do else!" -feedback an
+ * handles the progression of the quiz by increasing the {@link currentIndex} by one
+ */
 function renderNextCard() {
   if (isPowerOn) {
     playButtonSound();
@@ -89,8 +118,23 @@ function renderNextCard() {
   }
 }
 
+/**
+ * This function renders the quizData-information for the current index within the quiz-flow by:
+ * - accessing the quizData-information to
+ *    - fill the text-elements and animate it
+ *      with {@link animateText}
+ *    - fill the img-element
+ * also it increases the {@link controllIndex} keepm track with the also
+ * increased {@link currentIndex}
+ * it also controlls LED-behavior to give progress-feedback
+ * with {@link activateCurrentLED} if the last quiz-card is processed and
+ * answered it calles {@link countCorrectAnswers} for the {@link quizSummary}
+ * ------------------------------
+ * @param {number} currentIndex - The index of the quizData to render.
+ */
 function renderQuizData(currentIndex) {
   const quizJSON = quizData[currentIndex];
+
   controllIndex++;
 
   if (currentIndex < quizData.length) {
@@ -115,6 +159,10 @@ function renderQuizData(currentIndex) {
   }
 }
 
+/**
+ * This function iterates through the quizData and counts the number of correct answers.
+ * @returns {number} the total number of correct answers given.
+ */
 function countCorrectAnswers() {
   let correctAnswers = 0;
   for (let i = 0; i < quizData.length; i++) {
@@ -125,6 +173,12 @@ function countCorrectAnswers() {
   return correctAnswers;
 }
 
+/**
+ * Displays a summary message showing the total amount of correct answers given.
+ * - Depending on the actual amount, different messages are shown.
+ * - If the background-music is playing, it is stopped by {@link stopBgSound}
+ * - In in both cases a special "end-of-quiz-sound" is played {@link playEndSound}
+ */
 function quizSummary() {
   const correctAnswers = countCorrectAnswers();
   const soundSwitch = document.getElementById('sound-switch');
@@ -195,6 +249,12 @@ function quizSummary() {
   }
 }
 
+/**
+ * - Resets quiz-related states like {@link currentIndex}, {@link controllIndex} and {@link isStartRendered}
+ * - Resets all the progress-LEDs by calling {@link initializeLEDs}
+ * - Starts quiz over by rendering the first quiz-question by calling {@link renderNextCard}
+ * - By checking if the background-music is playing, it will continue playing it with the restart of the quiz
+ */
 function restartQuiz() {
   const soundSwitch = document.getElementById('sound-switch');
   if (soundSwitch.classList.contains('sound-on')) {
@@ -213,8 +273,13 @@ function restartQuiz() {
   renderNextCard();
 }
 
+/**
+ * This function animates text by iterating to an array containing text-elements {@link arrayName},
+ * simulating a typing effect on specified HTML elements by calling {@link typeWriter} for each.
+ * @param {string[]} arrayName - Array containing text content to be animated.
+ */
 function animateText(arrayName) {
-  const speed = 25;
+  const speed = 20;
   let delay = 0;
 
   arrayName.forEach((text, i) => {
@@ -231,6 +296,13 @@ function animateText(arrayName) {
   });
 }
 
+/**
+ * Simulates a typewriter effect by gradually displaying text.
+ * This function simulates a typewriter effect by gradually displaying text in a specified HTML element.
+ * @param {string} text - The text content to be displayed.
+ * @param {string} elementId - The ID of the HTML element to display the text.
+ * @param {number} speed - The speed of "typing" in milliseconds.
+ */
 function typeWriter(text, elementId, speed) {
   let i = 0;
   const targetElement = document.getElementById(elementId);
