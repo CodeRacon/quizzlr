@@ -1,6 +1,4 @@
 //
-//  VARIABLES
-//
 const displayedIMG = document.getElementById('img-display');
 const quizCardTitle = document.getElementById('quiz-card-title');
 const quizCardTxt = document.getElementById('quiz-card-text');
@@ -29,9 +27,9 @@ let controllIndex = 0;
 let isStartRendered = false;
 
 /**
- * Initializes the application by setting it to a clean start-state by:
- * - resetting all LEDs to an off-state
- * - setting the two main indexes back to 0
+ * Initializes the quiz-app by setting it to a clean start-state by:
+ * - resetting all LEDs to an off-state using {@link initializeLEDs}
+ * - setting {@link currentIndex} & {@link controllIndex} back to 0
  * - emptying the text-elements
  */
 function init() {
